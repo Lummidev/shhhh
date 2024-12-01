@@ -1,0 +1,42 @@
+.post {
+  background-color: #1e1e2e;
+  border-radius: 4px;
+  display: grid;
+  grid-template:
+    "profilePicture userInfo userInfo"
+    "profilePicture postText postText"
+    "profilePicture interactions interactions" / 44px auto auto;
+  padding: 0.6em;
+  gap: 0.6em;
+}
+.interactions {
+  grid-area: interactions;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% auto;
+  align-items: center;
+  justify-items: start;
+}
+.interactions button {
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: #cdd6f4;
+}
+.postText {
+  font-size: 0.9em;
+  grid-area: postText;
+  word-break: break-word;
+}
+.userInfo {
+  display: flex;
+  align-items: center;
+  grid-area: userInfo;
+}
+.handle {
+  color: #7f849c;
+  font-size: 0.8em;
+}
+.username {
+  font-weight: 600;
+  margin-right: 0.2em;
+}
