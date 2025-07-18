@@ -1,0 +1,69 @@
+.post {
+  background-color: #1e1e2e;
+  border-radius: 4px;
+  display: grid;
+  grid-template:
+    "profilePicture userInfo userInfo editButton deleteButton"
+    "profilePicture postText postText postText postText"
+    "interactions interactions interactions interactions interactions" / 44px auto auto 33px 33px;
+  padding: 0.6em;
+  gap: 0.6em;
+}
+.interactions {
+  grid-area: interactions;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% auto;
+  align-items: center;
+  justify-items: center;
+  margin-top: 0.6em;
+}
+.interactions button {
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: #cdd6f4;
+}
+.postText {
+  font-size: 0.9em;
+  grid-area: postText;
+  word-break: break-word;
+}
+.userInfo {
+  display: flex;
+  align-items: center;
+  grid-area: userInfo;
+}
+.username {
+  color: #7f849c;
+  font-size: 0.8em;
+}
+.displayName {
+  font-weight: 600;
+  margin-right: 0.2em;
+}
+.profilePictureWrapper {
+  grid-area: profilePicture;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profilePicture {
+  background-color: #313244;
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+}
+.editButton {
+  grid-area: editButton;
+}
+.deleteButton {
+  grid-area: deleteButton;
+}
+.actionButton {
+  background-color: #313244;
+  border: none;
+  color: #cdd6f4;
+  border-radius: 4px;
+  padding: 0;
+  padding: 4px;
+}

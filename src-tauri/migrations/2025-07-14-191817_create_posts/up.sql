@@ -1,0 +1,6 @@
+CREATE TABLE `posts`(
+	id TEXT NOT NULL PRIMARY KEY,
+	content TEXT NOT NULL,
+	created_at BIGINT NOT NULL,
+	updated_at BIGINT NOT NULL
+);
