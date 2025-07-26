@@ -9,6 +9,10 @@
   padding: 0.6em;
   gap: 0.6em;
 }
+/* .post * { */
+/* border: 1px solid #3f3f5f; */
+/*   border-radius: 3px; */
+/* } */
 .interactions {
   grid-area: interactions;
   display: grid;
@@ -40,6 +44,39 @@
 .displayName {
   font-weight: 600;
   margin-right: 0.2em;
+  font-size: 0.9em;
+}
+.dateInfo {
+  color: #bac2de;
+  font-size: 0.78em;
+  position: relative;
+  display: inline-block;
+}
+.dateTooltip {
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  width: 240px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -120px;
+  opacity: 0;
+  transition: opacity 0.2s 0.3s ease;
+}
+.dateInfo:hover .dateTooltip {
+  visibility: visible;
+  opacity: 1;
+}
+.dateSeparator {
+  -webkit-user-select: none;
+  user-select: none;
+  color: #7f849c;
+  margin: 0px 4px;
 }
 .profilePictureWrapper {
   grid-area: profilePicture;
