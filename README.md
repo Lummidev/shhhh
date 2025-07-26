@@ -34,12 +34,6 @@ Or, to just see it in action, run:
 npm run tauri dev
 ```
 
-Right now, when running the application, the environment variable `DATABASE_URL` needs to where you want your SQLite database to exist for everything to work correctly. This will be fixed soon. So, something like this, depending on your shell:
-
-```sh
-DATABASE_URL=/path/to/your/database.db npm run tauri dev
-```
-
 Give it a minute (or more) for the first build and the app will open.
 
 # Information and Acknowledgements

@@ -1,7 +1,13 @@
+use crate::database::migrations::run_migrations;
+
 mod commands;
 mod database;
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    if let Err(err) = run_migrations() {
+        eprintln!("{}", err);
+        return;
+    }
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
