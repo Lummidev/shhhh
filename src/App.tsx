@@ -5,7 +5,6 @@ import backend from "./backend";
 import PostComponent from "./Components/Post/post";
 import Post from "./Types/Post";
 import EditPostModal from "./Components/PostModal/EditPostModal";
-import dayjs from "dayjs";
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPostContent, setNewPostContent] = useState("");
@@ -42,11 +41,11 @@ function App() {
     setModalVisible(true);
   };
   const handleEdit = async (id: string, newContent: string) => {
-    await backend.posts.edit(id, newContent);
+    let savedPost = await backend.posts.edit(id, newContent);
     let edited_posts = posts.map((post) => {
       if (post.id === id) {
-        post.content = newContent;
-        post.updated_at = dayjs().unix();
+        post.content = savedPost.content;
+        post.updated_at = savedPost.updated_at;
       }
       return post;
     });
