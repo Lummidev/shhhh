@@ -1,8 +1,8 @@
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 body {
+  font-family: "Roboto Variable", sans-serif;
   background-color: #11111b;
   color: #cdd6f4;
 }
@@ -10,7 +10,7 @@ body {
   display: grid;
   padding: 10px;
   grid-template:
-    "appTitle postsTitle search" 3em
+    "appTitle postsTitle searchContainer" 3em
     "sidebar-left main sidebar-right" auto/20% auto 20%;
   gap: 1em;
   height: 100vh;
@@ -51,17 +51,23 @@ body {
 .sidebar-right {
   grid-area: sidebar-right;
 }
-.search {
+.searchContainer {
+  grid-area: searchContainer;
+  background-color: #1e1e2e;
+  display: flex;
+  border-radius: 8px;
+  padding: 1em;
+}
+.searchContainer .search {
   border: none;
   outline: none;
   box-shadow: none;
   color: #cdd6f4;
-  border-radius: 8px;
   background-color: #1e1e2e;
   width: 100%;
-  padding: 1em;
-  grid-area: search;
+  padding-left: 0.5em;
 }
+
 .sidebar-left h1 {
 }
 

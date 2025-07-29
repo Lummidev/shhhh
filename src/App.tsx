@@ -5,6 +5,8 @@ import backend from "./backend";
 import PostComponent from "./Components/Post/post";
 import Post from "./Types/Post";
 import EditPostModal from "./Components/PostModal/EditPostModal";
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPostContent, setNewPostContent] = useState("");
@@ -54,10 +56,12 @@ function App() {
   const MenuBar = () => {
     return (
       <>
-        <h1 className="appTitle tabTitle">🤐 Shhhh</h1>
+        <h1 className="appTitle tabTitle">Shhhh</h1>
         <aside className="sidebar-left">
           <ul className="sidebarMenu">
-            <li onClick={setUserInfo}>👤 User</li>
+            <li onClick={setUserInfo}>
+              <Fa icon={faUser} /> User
+            </li>
           </ul>
         </aside>
       </>
@@ -101,7 +105,12 @@ function App() {
             </div>
           </div>
         </main>
-        <input type="text" placeholder="Search" className="search" />
+        <div className="searchContainer">
+          <div className="searchIcon">
+            <Fa icon={faMagnifyingGlass} />
+          </div>
+          <input type="text" placeholder="Search" className="search" />
+        </div>
         <aside className="sidebar-right"></aside>
       </div>
       <EditPostModal

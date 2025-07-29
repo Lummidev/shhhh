@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
+
 import "./EditPostModal.css";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 const EditPostModal = ({
   id,
   displayName,
@@ -49,7 +52,7 @@ const EditPostModal = ({
             }}
             disabled={inputDisabled}
           >
-            ❌
+            <Fa icon={faXmark} />
           </button>
           <textarea
             className="EditPostInput"
@@ -68,7 +71,7 @@ const EditPostModal = ({
               }}
               disabled={inputDisabled}
             >
-              ❎Cancel
+              <Fa icon={faXmark} /> Cancel
             </button>
             <button
               className="saveEditButton"
@@ -79,7 +82,7 @@ const EditPostModal = ({
               }}
               disabled={inputDisabled}
             >
-              ✅Save
+              <Fa icon={faCheck} /> Save
             </button>
           </div>
         </div>

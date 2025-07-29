@@ -1,6 +1,16 @@
 import Post from "../../Types/Post";
 import dayjs from "dayjs";
 import relativeTimePlugin from "dayjs/plugin/relativeTime";
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
+import {
+  faComment,
+  faHeart as faHeartRegular,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faPenToSquare,
+  faRepeat,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import "./post.css";
 dayjs.extend(relativeTimePlugin);
 const PostElement = ({
@@ -51,7 +61,7 @@ const PostElement = ({
             handleEditClick(post.id, post.content);
           }}
         >
-          ✏️
+          <Fa icon={faPenToSquare} />
         </button>
         <button
           className="deleteButton actionButton"
@@ -59,14 +69,21 @@ const PostElement = ({
             handleDeleteClick(post.id);
           }}
         >
-          🗑️
+          {" "}
+          <Fa icon={faTrash} />
         </button>
 
         <div className="postText">{post.content}</div>
         <div className="interactions">
-          <button>⬤</button>
-          <button>⬤</button>
-          <button>⬤</button>
+          <button>
+            <Fa icon={faComment} />
+          </button>
+          <button>
+            <Fa icon={faRepeat} />
+          </button>
+          <button>
+            <Fa icon={faHeartRegular} />
+          </button>
         </div>
       </div>
     </>
