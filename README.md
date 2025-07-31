@@ -36,7 +36,7 @@ npm run tauri dev
 
 Give it a minute (or more) for the first build and the app will open.
 
-# Information and Acknowledgements
+## Information and Acknowledgements
 
 This is a toy project. It started as a joke, then I talked about it with my friends, one of which suggested the name "Shhhh" (it's a pun on how we pronnounce "X")( :brazil: obrigado Jean), and realized this might actually be _fun_ to develop.
 
