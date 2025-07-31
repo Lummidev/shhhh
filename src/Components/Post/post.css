@@ -63,7 +63,8 @@
 }
 .username {
   color: #7f849c;
-  font-size: 0.8em;
+  font-size: 0.9em;
+  font-family: "Ubuntu Variable", sans-serif;
 }
 .displayName {
   font-weight: 600;
