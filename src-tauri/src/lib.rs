@@ -16,7 +16,8 @@ pub fn run() {
             commands::get_all,
             commands::remove,
             commands::edit,
-            commands::get
+            commands::get,
+            commands::add_likes
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

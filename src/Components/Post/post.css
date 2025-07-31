@@ -5,27 +5,50 @@
   grid-template:
     "profilePicture userInfo userInfo editButton deleteButton"
     "profilePicture postText postText postText postText"
-    "interactions interactions interactions interactions interactions" / 44px auto auto 33px 33px;
+    "profilePicture interactions interactions interactions interactions" / 44px auto auto 33px 33px;
   padding: 0.6em;
   gap: 0.6em;
 }
-/* .post * { */
-/* border: 1px solid #3f3f5f; */
-/*   border-radius: 3px; */
-/* } */
+
 .interactions {
   grid-area: interactions;
   display: grid;
-  grid-template-columns: 33.3% 33.3% auto;
+  grid-template-columns: auto auto auto;
   align-items: center;
-  justify-items: center;
-  margin-top: 0.6em;
+  justify-items: flex-start;
+  margin-top: 0.4em;
+}
+.counter {
+  font-size: 0.85em;
+  margin-left: 0.5em;
 }
 .interactions button {
-  padding: 0;
+  padding: 0.4em;
   background-color: inherit;
   border: none;
+  border-radius: 4px;
   color: #cdd6f4;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+
+  justify-content: left;
+}
+.interactions button .kindaLiked {
+  font-weight: 600;
+}
+.interactions button .veryLiked {
+  font-weight: 700;
+}
+.interactions button .likedALot {
+  font-weight: 800;
+}
+.interactions .likedPost svg {
+  color: #f38ba8;
+}
+.interactions button:hover {
+  cursor: pointer;
+  background-color: #313244;
 }
 .postText {
   font-size: 0.9em;
@@ -105,3 +128,10 @@
   padding: 0;
   padding: 4px;
 }
+.actionButton:hover {
+  cursor: pointer;
+}
+/* .post * {
+  border: 1px solid #3f3f5f !important;
+  border-radius: 3px;
+} */

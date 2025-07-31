@@ -6,5 +6,6 @@ diesel::table! {
         content -> Text,
         created_at -> BigInt,
         updated_at -> BigInt,
+        likes -> Integer,
     }
 }

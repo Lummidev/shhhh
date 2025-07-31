@@ -21,5 +21,8 @@ export default {
     remove: async (deleteId: string) => {
       await invoke("remove", { deleteId });
     },
+    addLikes: async (id: string, amount: number) => {
+      return (await invoke("add_likes", { id, amount })) as Post;
+    },
   },
 };

@@ -25,3 +25,10 @@ pub fn remove(delete_id: String) {
 pub fn edit(id: String, new_content: String) -> Post {
     post_repository::edit(id, new_content.trim().to_owned())
 }
+#[tauri::command]
+pub fn add_likes(id: String, amount: i32) -> Result<Post, String> {
+    match post_repository::add_likes(id, amount) {
+        Ok(post) => Ok(post),
+        Err(e) => Err(e.to_string()),
+    }
+}

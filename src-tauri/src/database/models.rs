@@ -9,6 +9,7 @@ use crate::database::schema::posts;
 pub struct Post {
     pub id: String,
     pub content: String,
+    pub likes: i32,
     pub created_at: i64,
     pub updated_at: i64,
 }

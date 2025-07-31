@@ -40,6 +40,7 @@ pub fn save(content: String) -> Post {
     let post = Post {
         id: new_uuid.to_string(),
         content,
+        likes: 0,
         created_at: now,
         updated_at: now,
     };
@@ -67,4 +68,13 @@ pub fn remove(delete_id: String) {
     diesel::delete(posts.filter(id.eq(delete_id)))
         .execute(connection)
         .expect("Error deleting post");
+}
+
+pub fn add_likes(liked_post_id: String, amount: i32) -> Result<Post, diesel::result::Error> {
+    use crate::database::schema::posts::dsl::{likes, posts};
+    let connection = &mut establish_connection();
+    diesel::update(posts.find(liked_post_id))
+        .set(likes.eq(likes + amount))
+        .returning(Post::as_returning())
+        .get_result(connection)
 }

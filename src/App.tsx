@@ -15,6 +15,7 @@ function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [textToEdit, setTextToEdit] = useState("");
   const [idToEdit, setIdToEdit] = useState("");
+  const [likeActions, setLikeActions] = useState<{ likedPostID: string }[]>([]);
   async function addPost() {
     let added_post = await backend.posts.save(newPostContent);
     setPosts([added_post, ...posts]);
@@ -26,6 +27,73 @@ function App() {
     };
     loadFirstPosts();
   }, []);
+  const changePostLikesLocally = (id: string, amount: number) => {
+    let post = posts.filter((post) => post.id === id).shift();
+    if (post) {
+      post.likes += amount;
+      updatePost(post);
+    }
+  };
+  // Debounce liking posts to save disk I/O
+  useEffect(() => {
+    function consolidateLikes() {
+      let totalPostLikes: { id: string; amount: number }[] = [];
+      for (let like of likeActions) {
+        let likedBefore =
+          totalPostLikes.filter(
+            (idAmountMap) => idAmountMap.id === like.likedPostID,
+          ).length > 0;
+        if (!likedBefore) {
+          totalPostLikes.push({ id: like.likedPostID, amount: 1 });
+        } else {
+          totalPostLikes = totalPostLikes.map((idAmountMap) => {
+            if (idAmountMap.id === like.likedPostID) {
+              idAmountMap.amount += 1;
+            }
+            return idAmountMap;
+          });
+        }
+      }
+      return totalPostLikes;
+    }
+    async function saveLikes(totalPostLikes: { id: string; amount: number }[]) {
+      for (let idAmountMap of totalPostLikes) {
+        try {
+          let updatedPost = await backend.posts.addLikes(
+            idAmountMap.id,
+            idAmountMap.amount,
+          );
+          updatePost(updatedPost);
+        } catch (e) {
+          console.error(e);
+          changePostLikesLocally(idAmountMap.id, -idAmountMap.amount);
+        }
+      }
+      setLikeActions([]);
+    }
+
+    const maxLikesBeforeNotDebouncing = 15;
+    const maxUniqueLikedPostsBeforeNotDebouncing = 3;
+    const debounceMiliseconds = 500;
+    if (likeActions.length < 1) {
+      return;
+    }
+    let likes = consolidateLikes();
+    const saveLikesTimeout = setTimeout(async () => {
+      saveLikes(likes);
+    }, debounceMiliseconds);
+    if (
+      likeActions.length >= maxLikesBeforeNotDebouncing ||
+      likes.length >= maxUniqueLikedPostsBeforeNotDebouncing
+    ) {
+      clearTimeout(saveLikesTimeout);
+      saveLikes(likes);
+      return;
+    }
+    return () => {
+      clearTimeout(saveLikesTimeout);
+    };
+  }, [likeActions]);
   const setUserInfo = () => {
     const newDisplayName = prompt("User's Display Name");
     const newUsername = prompt("User's username");
@@ -42,17 +110,22 @@ function App() {
     setIdToEdit(id);
     setModalVisible(true);
   };
-  const handleEdit = async (id: string, newContent: string) => {
-    let savedPost = await backend.posts.edit(id, newContent);
-    let edited_posts = posts.map((post) => {
-      if (post.id === id) {
-        post.content = savedPost.content;
-        post.updated_at = savedPost.updated_at;
-      }
-      return post;
-    });
+  const updatePost = (updatedPost: Post) => {
+    let edited_posts = posts.map((post) =>
+      post.id === updatedPost.id ? updatedPost : post,
+    );
     setPosts(edited_posts);
   };
+  const handleEdit = async (id: string, newContent: string) => {
+    let savedPost = await backend.posts.edit(id, newContent);
+    updatePost(savedPost);
+  };
+
+  const handlePostLike = async (id: string) => {
+    setLikeActions([...likeActions, { likedPostID: id }]);
+    changePostLikesLocally(id, 1);
+  };
+
   const MenuBar = () => {
     return (
       <>
@@ -100,6 +173,8 @@ function App() {
                   handleDeleteClick={handleDelete}
                   handleEditClick={launchModal}
                   post={post}
+                  likes={post.likes}
+                  onLike={handlePostLike}
                 />
               ))}
             </div>

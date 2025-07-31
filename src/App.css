@@ -26,7 +26,7 @@ body {
   background-color: #1e1e2e;
   padding: 0.8em;
   font-size: 1.2em;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .sidebar-left > h1 {
@@ -41,7 +41,7 @@ body {
 .sidebarMenu > * {
   background-color: #1e1e2e;
   padding: 0.8em;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 .sidebarMenu {
   display: flex;
@@ -55,7 +55,7 @@ body {
   grid-area: searchContainer;
   background-color: #1e1e2e;
   display: flex;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 1em;
 }
 .searchContainer .search {
@@ -77,8 +77,13 @@ main {
   gap: 1em;
   overflow: auto;
   grid-area: main;
+  -ms-overflow-style: none;
 }
-.newPostForm {
+main::-webkit-scrollbar {
+  display: none;
+}
+
+main .newPostForm {
   background-color: #1e1e2e;
   border-radius: 4px;
   display: grid;
