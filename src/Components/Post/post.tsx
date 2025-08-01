@@ -1,6 +1,7 @@
 import Post from "../../Types/Post";
 import dayjs from "dayjs";
 import relativeTimePlugin from "dayjs/plugin/relativeTime";
+import updateLocalePluin from "dayjs/plugin/updateLocale";
 import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 import {
   faComment,
@@ -14,6 +15,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./post.css";
 dayjs.extend(relativeTimePlugin);
+dayjs.extend(updateLocalePluin);
+dayjs.updateLocale("en", {
+  relativeTime: {
+    s: "now",
+    m: "1min",
+    mm: "%dmin",
+    h: "1h",
+    hh: "%dh",
+    d: "1d",
+    dd: "%dd",
+    M: "1m",
+    MM: "%dm",
+    y: "1y",
+    yy: "%dy",
+  },
+});
+dayjs.locale("en");
 const PostElement = ({
   displayName,
   username,
@@ -60,10 +78,8 @@ const PostElement = ({
           <div className="username">@{username}</div>
           <div className="dateSeparator">•</div>
           <div className="dateInfo">
-            {dayjs.unix(post.created_at).fromNow() +
-              (edited
-                ? ` (Edited ${dayjs.unix(post.updated_at).fromNow()})`
-                : "")}
+            {dayjs.unix(post.created_at).fromNow(true) +
+              (edited ? ` (Edited)` : "")}
             <span className="dateTooltip">
               Created: {dayjs.unix(post.created_at).toString()}
               {edited ? (
