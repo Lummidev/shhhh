@@ -12,8 +12,10 @@ import {
   faRepeat,
   faTrash,
   faHeart as faHeartSolid,
+  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
 import "./post.css";
+import { useState } from "react";
 dayjs.extend(relativeTimePlugin);
 dayjs.extend(updateLocalePluin);
 dayjs.updateLocale("en", {
@@ -50,6 +52,7 @@ const PostElement = ({
   post: Post;
 }) => {
   const edited = post.created_at !== post.updated_at;
+  const [showMore, setShowMore] = useState(false);
   const likeCounterStyle = () => {
     switch (true) {
       case likes >= 100:
@@ -93,22 +96,50 @@ const PostElement = ({
             </span>
           </div>
         </div>
-        <button
-          className="editButton actionButton"
-          onClick={() => {
-            handleEditClick(post.id, post.content);
-          }}
-        >
-          <Fa icon={faPenToSquare} />
-        </button>
-        <button
-          className="deleteButton actionButton"
-          onClick={() => {
-            handleDeleteClick(post.id);
-          }}
-        >
-          <Fa icon={faTrash} />
-        </button>
+        <div className="moreArea">
+          <button
+            className="actionButton moreButton"
+            onClick={() => {
+              setShowMore(!showMore);
+            }}
+          >
+            <Fa icon={faEllipsis} />
+          </button>
+          {showMore ? (
+            <>
+              <div
+                className="moreMenuScreenBlock"
+                onClick={() => {
+                  setShowMore(false);
+                }}
+              ></div>
+              <ul className="moreMenu">
+                <li>
+                  <button
+                    onClick={() => {
+                      setShowMore(false);
+                      handleEditClick(post.id, post.content);
+                    }}
+                  >
+                    <Fa icon={faPenToSquare} /> Edit
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      setShowMore(false);
+                      handleDeleteClick(post.id);
+                    }}
+                  >
+                    <Fa icon={faTrash} /> Delete
+                  </button>
+                </li>
+              </ul>
+            </>
+          ) : (
+            ""
+          )}
+        </div>
 
         <div className="postText">{post.content}</div>
         <div className="interactions">

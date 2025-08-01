@@ -3,7 +3,7 @@
   border-radius: 4px;
   display: grid;
   grid-template:
-    "profilePicture userInfo userInfo editButton deleteButton"
+    "profilePicture userInfo userInfo userInfo moreArea"
     "profilePicture postText postText postText postText"
     "profilePicture interactions interactions interactions interactions" / 44px auto auto 33px 33px;
   padding: 0.6em;
@@ -23,11 +23,11 @@
   margin-left: 0.5em;
 }
 .interactions button {
-  padding: 0.4em;
+  padding: 4px;
   background-color: inherit;
   border: none;
   border-radius: 4px;
-  color: #cdd6f4;
+  color: inherit;
   transition: background-color 0.2s ease;
   display: flex;
   align-items: center;
@@ -79,8 +79,8 @@
 }
 .dateTooltip {
   visibility: hidden;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: #fff;
+  background-color: rgba(17, 17, 27, 0.4);
+  color: inherit;
   text-align: center;
   padding: 10px 0;
   border-radius: 4px;
@@ -115,22 +115,55 @@
   width: 40px;
   border-radius: 8px;
 }
-.editButton {
-  grid-area: editButton;
+.moreArea {
+  grid-area: moreArea;
+  position: relative;
 }
-.deleteButton {
-  grid-area: deleteButton;
-}
-.actionButton {
-  background-color: #313244;
+.moreButton {
+  background-color: inherit;
   border: none;
-  color: #cdd6f4;
+  color: inherit;
   border-radius: 4px;
-  padding: 0;
   padding: 4px;
 }
-.actionButton:hover {
+.moreButton:hover {
   cursor: pointer;
+  background-color: #313244;
+}
+.moreMenuScreenBlock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.moreMenu {
+  position: absolute;
+  z-index: 2;
+  top: 45%;
+  right: 40%;
+  background-color: #1e1e2e;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px 2px #313244;
+}
+.moreMenu li button {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+}
+.moreMenu li button:hover {
+  cursor: pointer;
+  background-color: #313244;
+}
+.moreMenu li svg {
+  margin-right: 8px;
+  font-size: 1em;
 }
 /* .post * {
   border: 1px solid #3f3f5f !important;
