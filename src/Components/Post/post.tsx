@@ -13,6 +13,7 @@ import {
   faTrash,
   faHeart as faHeartSolid,
   faEllipsis,
+  faHeartBroken,
 } from "@fortawesome/free-solid-svg-icons";
 import "./post.css";
 import { useState } from "react";
@@ -38,6 +39,7 @@ const PostElement = ({
   displayName,
   username,
   handleDeleteClick,
+  handleRemoveLikesClick,
   handleEditClick,
   post,
   onLike,
@@ -46,6 +48,7 @@ const PostElement = ({
   displayName: string;
   username: string;
   handleDeleteClick: (id: string) => Promise<void>;
+  handleRemoveLikesClick: (id: string) => Promise<void>;
   handleEditClick: (id: string, currentContent: string) => Promise<void>;
   onLike: (id: string) => Promise<void>;
   likes: number;
@@ -132,6 +135,16 @@ const PostElement = ({
                     }}
                   >
                     <Fa icon={faTrash} /> Delete
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      setShowMore(false);
+                      handleRemoveLikesClick(post.id);
+                    }}
+                  >
+                    <Fa icon={faHeartBroken} /> Remove All Likes
                   </button>
                 </li>
               </ul>

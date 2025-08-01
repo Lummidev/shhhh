@@ -105,6 +105,10 @@ function App() {
     const filteredPosts = posts.filter((post) => post.id !== id);
     setPosts(filteredPosts);
   };
+  const handleRemoveLikes = async (id: string) => {
+    let post: Post = await backend.posts.removeLikes(id);
+    updatePost(post);
+  };
   const launchModal = async (id: string, startText: string) => {
     setTextToEdit(startText);
     setIdToEdit(id);
@@ -171,6 +175,7 @@ function App() {
                   displayName={displayName}
                   username={username}
                   handleDeleteClick={handleDelete}
+                  handleRemoveLikesClick={handleRemoveLikes}
                   handleEditClick={launchModal}
                   post={post}
                   likes={post.likes}

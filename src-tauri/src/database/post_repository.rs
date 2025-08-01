@@ -78,3 +78,11 @@ pub fn add_likes(liked_post_id: String, amount: i32) -> Result<Post, diesel::res
         .returning(Post::as_returning())
         .get_result(connection)
 }
+pub fn remove_likes(post_id: String) -> Result<Post, diesel::result::Error> {
+    use crate::database::schema::posts::dsl::{likes, posts};
+    let connection = &mut establish_connection();
+    diesel::update(posts.find(post_id))
+        .set(likes.eq(0))
+        .returning(Post::as_returning())
+        .get_result(connection)
+}

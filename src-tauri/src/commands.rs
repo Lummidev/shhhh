@@ -32,3 +32,10 @@ pub fn add_likes(id: String, amount: i32) -> Result<Post, String> {
         Err(e) => Err(e.to_string()),
     }
 }
+#[tauri::command]
+pub fn remove_likes(id: String) -> Result<Post, String> {
+    match post_repository::remove_likes(id) {
+        Ok(post) => Ok(post),
+        Err(e) => Err(e.to_string()),
+    }
+}
