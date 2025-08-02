@@ -8,162 +8,162 @@
     "profilePicture interactions interactions interactions interactions" / 44px auto auto 33px 33px;
   padding: 0.6em;
   gap: 0.6em;
-}
-
-.interactions {
-  grid-area: interactions;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
-  justify-items: flex-start;
-  margin-top: 0.4em;
-}
-.counter {
-  font-size: 0.85em;
-  margin-left: 0.5em;
-}
-.interactions button {
-  padding: 4px;
-  background-color: inherit;
-  border: none;
-  border-radius: 4px;
-  color: inherit;
-  transition: background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-
-  justify-content: left;
-}
-.interactions button .kindaLiked {
-  font-weight: 600;
-}
-.interactions button .veryLiked {
-  font-weight: 700;
-}
-.interactions button .likedALot {
-  font-weight: 800;
-}
-.interactions .likedPost svg {
-  color: #f38ba8;
-}
-.interactions button:hover {
-  cursor: pointer;
-  background-color: #313244;
-}
-.postText {
-  font-size: 0.9em;
-  grid-area: postText;
-  word-break: break-word;
-  white-space: pre-wrap;
-}
-.userInfo {
-  display: flex;
-  align-items: center;
-  grid-area: userInfo;
-}
-.username {
-  color: #7f849c;
-  font-size: 0.9em;
-  font-family: "Ubuntu Variable", sans-serif;
-}
-.displayName {
-  font-weight: 600;
-  margin-right: 0.2em;
-  font-size: 0.9em;
-}
-.dateInfo {
-  color: #bac2de;
-  font-size: 0.78em;
-  position: relative;
-  display: inline-block;
-}
-.dateTooltip {
-  visibility: hidden;
-  background-color: rgba(17, 17, 27, 0.4);
-  color: inherit;
-  text-align: center;
-  padding: 10px 0;
-  border-radius: 4px;
-  position: absolute;
-  z-index: 1;
-  width: 240px;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -120px;
-  opacity: 0;
-  transition: opacity 0.2s 0.3s ease;
-}
-.dateInfo:hover .dateTooltip {
-  visibility: visible;
-  opacity: 1;
-}
-.dateSeparator {
-  -webkit-user-select: none;
-  user-select: none;
-  color: #7f849c;
-  margin: 0px 4px;
-}
-.profilePictureWrapper {
-  grid-area: profilePicture;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.profilePicture {
-  background-color: #313244;
-  height: 40px;
-  width: 40px;
-  border-radius: 8px;
-}
-.moreArea {
-  grid-area: moreArea;
-  position: relative;
-}
-.moreButton {
-  background-color: inherit;
-  border: none;
-  color: inherit;
-  border-radius: 4px;
-  padding: 4px;
-}
-.moreButton:hover {
-  cursor: pointer;
-  background-color: #313244;
-}
-.moreMenuScreenBlock {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  z-index: 1;
-}
-.moreMenu {
-  position: absolute;
-  z-index: 2;
-  top: 45%;
-  right: 40%;
-  background-color: #1e1e2e;
-  border-radius: 4px;
-  box-shadow: 0px 0px 8px 2px #313244;
-}
-.moreMenu li button {
-  width: 100%;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  background-color: inherit;
-  color: inherit;
-  border: none;
-}
-.moreMenu li button:hover {
-  cursor: pointer;
-  background-color: #313244;
-}
-.moreMenu li svg {
-  margin-right: 8px;
-  font-size: 1em;
+  .profilePictureWrapper {
+    grid-area: profilePicture;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .profilePicture {
+      background-color: #313244;
+      height: 40px;
+      width: 40px;
+      border-radius: 8px;
+    }
+  }
+  .userInfo {
+    display: flex;
+    align-items: center;
+    grid-area: userInfo;
+    .displayName {
+      font-weight: 600;
+      margin-right: 0.2em;
+      font-size: 0.9em;
+    }
+    .username {
+      color: #7f849c;
+      font-size: 0.9em;
+      font-family: "Ubuntu Variable", sans-serif;
+    }
+    .dateSeparator {
+      -webkit-user-select: none;
+      user-select: none;
+      color: #7f849c;
+      margin: 0px 4px;
+    }
+    .dateInfo {
+      color: #bac2de;
+      font-size: 0.78em;
+      position: relative;
+      display: inline-block;
+      .dateTooltip {
+        visibility: hidden;
+        background-color: rgba(17, 17, 27, 0.4);
+        color: inherit;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 4px;
+        position: absolute;
+        z-index: 1;
+        width: 240px;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -120px;
+        opacity: 0;
+        transition: opacity 0.2s 0.3s ease;
+      }
+      &:hover .dateTooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  .moreArea {
+    grid-area: moreArea;
+    position: relative;
+    .moreButton {
+      background-color: inherit;
+      border: none;
+      color: inherit;
+      border-radius: 4px;
+      padding: 4px;
+      &:hover {
+        cursor: pointer;
+        background-color: #313244;
+      }
+    }
+    .moreMenuScreenBlock {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: 1;
+    }
+    .moreMenu {
+      position: absolute;
+      z-index: 2;
+      top: 45%;
+      right: 40%;
+      background-color: #1e1e2e;
+      border-radius: 4px;
+      box-shadow: 0px 0px 8px 2px #313244;
+      li {
+        svg {
+          margin-right: 8px;
+          font-size: 1em;
+        }
+        button {
+          width: 100%;
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          background-color: inherit;
+          color: inherit;
+          border: none;
+          &:hover {
+            cursor: pointer;
+            background-color: #313244;
+          }
+        }
+      }
+    }
+  }
+  .postText {
+    font-size: 0.9em;
+    grid-area: postText;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+  .interactions {
+    grid-area: interactions;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-items: flex-start;
+    margin-top: 0.4em;
+    button {
+      padding: 4px;
+      background-color: inherit;
+      border: none;
+      border-radius: 4px;
+      color: inherit;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      .counter {
+        font-size: 0.85em;
+        margin-left: 0.5em;
+      }
+      &.likedPost svg {
+        color: #f38ba8;
+      }
+      .kindaLiked {
+        font-weight: 600;
+      }
+      .veryLiked {
+        font-weight: 700;
+      }
+      .likedALot {
+        font-weight: 800;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #313244;
+      }
+    }
+  }
 }
 /* .post * {
   border: 1px solid #3f3f5f !important;

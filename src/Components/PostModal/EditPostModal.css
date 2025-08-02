@@ -10,83 +10,81 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.EditPostModal.open {
-  z-index: 999;
-  opacity: 1;
-}
-.EditPostModalContent {
-  background-color: #1e1e2e;
-  border-radius: 4px;
-  display: grid;
-  grid-template:
-    "ModalTitle ModalTitle ModalTitle closeModal"
-    "ModalProfilePictureWrapper ModalUserInfo ModalUserInfo ModalUserInfo"
-    "ModalProfilePictureWrapper EditPostInput EditPostInput EditPostInput"
-    "ModalProfilePictureWrapper modalActions modalActions modalActions" / 44px auto auto auto;
-  padding: 0.6em;
-  gap: 0.6em;
-  width: 50%;
-  box-shadow: 0px 0px 32px 4px rgba(0, 0, 0, 0.8);
-}
-
-.ModalUserInfo {
-  grid-area: ModalUserInfo;
-  display: flex;
-  align-items: center;
-}
-.ModalUsername {
-  font-weight: 600;
-  margin-right: 0.2em;
-  grid-area: ModalUsername;
-}
-
-.ModalHandle {
-  color: #7f849c;
-  font-size: 0.8em;
-  grid-area: ModalHandle;
-}
-.ModalProfilePictureWrapper {
-  grid-area: ModalProfilePictureWrapper;
-}
-.ModalProfilePicture {
-  grid-area: ModalProfilePicture;
-  background-color: #313244;
-  height: 40px;
-  width: 40px;
-  border-radius: 8px;
-}
-.closeModal {
-  grid-area: closeModal;
-  justify-self: end;
-}
-.EditPostInput {
-  grid-area: EditPostInput;
-}
-.modalActions {
-  grid-area: modalActions;
-  display: flex;
-  justify-content: flex-end;
-  margin: 4px;
-  gap: 16px;
-}
-.ModalTitle {
-  grid-area: ModalTitle;
-  font-weight: bold;
-  font-size: 16pt;
-}
-.modalActions button {
-  padding: 8px 16px;
-  border-radius: 4px;
-  border: none;
-  color: #cdd6f4;
-}
-.modalActions button:hover {
-  cursor: pointer;
-}
-.cancelEditButton {
-  background-color: #313244;
-}
-.saveEditButton {
-  background-color: #607eaf;
+  &.open {
+    z-index: 999;
+    opacity: 1;
+  }
+  .EditPostModalContent {
+    background-color: #1e1e2e;
+    border-radius: 4px;
+    display: grid;
+    grid-template:
+      "ModalTitle ModalTitle ModalTitle closeModal"
+      "ModalProfilePictureWrapper ModalUserInfo ModalUserInfo ModalUserInfo"
+      "ModalProfilePictureWrapper EditPostInput EditPostInput EditPostInput"
+      "ModalProfilePictureWrapper modalActions modalActions modalActions" / 44px auto auto auto;
+    padding: 0.6em;
+    gap: 0.6em;
+    width: 50%;
+    box-shadow: 0px 0px 32px 4px rgba(0, 0, 0, 0.8);
+    .ModalTitle {
+      grid-area: ModalTitle;
+      font-weight: bold;
+      font-size: 16pt;
+    }
+    .ModalUserInfo {
+      grid-area: ModalUserInfo;
+      display: flex;
+      align-items: center;
+      .ModalUsername {
+        font-weight: 600;
+        margin-right: 0.2em;
+        grid-area: ModalUsername;
+      }
+      .ModalHandle {
+        color: #7f849c;
+        font-size: 0.8em;
+        grid-area: ModalHandle;
+      }
+    }
+    .ModalProfilePictureWrapper {
+      grid-area: ModalProfilePictureWrapper;
+      .ModalProfilePicture {
+        grid-area: ModalProfilePicture;
+        background-color: #313244;
+        height: 40px;
+        width: 40px;
+        border-radius: 8px;
+      }
+    }
+    .closeModal {
+      grid-area: closeModal;
+      justify-self: end;
+    }
+    .EditPostInput {
+      grid-area: EditPostInput;
+    }
+    .modalActions {
+      grid-area: modalActions;
+      display: flex;
+      justify-content: flex-end;
+      margin: 4px;
+      gap: 16px;
+      button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        color: #cdd6f4;
+        &:hover {
+          cursor: pointer;
+        }
+        &.cancelEditButton {
+          background-color: #313244;
+        }
+        &.saveEditButton {
+          background-color: #607eaf;
+        }
+      }
+    }
+  }
 }

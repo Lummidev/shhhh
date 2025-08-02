@@ -101,7 +101,7 @@ const PostElement = ({
         </div>
         <div className="moreArea">
           <button
-            className="actionButton moreButton"
+            className="moreButton"
             onClick={() => {
               setShowMore(!showMore);
             }}

@@ -167,22 +167,20 @@ function App() {
             />
             <button onClick={addPost}>Save</button>
           </div>
-          <div className="posts">
-            <div className="postsContainer">
-              {posts.map((post) => (
-                <PostComponent
-                  key={post.id}
-                  displayName={displayName}
-                  username={username}
-                  handleDeleteClick={handleDelete}
-                  handleRemoveLikesClick={handleRemoveLikes}
-                  handleEditClick={launchModal}
-                  post={post}
-                  likes={post.likes}
-                  onLike={handlePostLike}
-                />
-              ))}
-            </div>
+          <div className="postsContainer">
+            {posts.map((post) => (
+              <PostComponent
+                key={post.id}
+                displayName={displayName}
+                username={username}
+                handleDeleteClick={handleDelete}
+                handleRemoveLikesClick={handleRemoveLikes}
+                handleEditClick={launchModal}
+                post={post}
+                likes={post.likes}
+                onLike={handlePostLike}
+              />
+            ))}
           </div>
         </main>
         <div className="searchContainer">

@@ -15,111 +15,101 @@ body {
   gap: 1em;
   height: 100vh;
   overflow: hidden;
-}
-.appTitle {
-  grid-area: appTitle;
-}
-.postsTitle {
-  grid-area: postsTitle;
-}
-.tabTitle {
-  background-color: #1e1e2e;
-  padding: 0.8em;
-  font-size: 1.2em;
-  border-radius: 4px;
-}
-
-.sidebar-left > h1 {
-  padding: 0.8em;
-  font-size: 1.2em;
-}
-.sidebar-left {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-.sidebarMenu > * {
-  background-color: #1e1e2e;
-  padding: 0.8em;
-  border-radius: 4px;
-}
-.sidebarMenu {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
-}
-.sidebar-right {
-  grid-area: sidebar-right;
-}
-.searchContainer {
-  grid-area: searchContainer;
-  background-color: #1e1e2e;
-  display: flex;
-  border-radius: 4px;
-  padding: 1em;
-}
-.searchContainer .search {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  color: #cdd6f4;
-  background-color: #1e1e2e;
-  width: 100%;
-  padding-left: 0.5em;
-}
-
-.sidebar-left h1 {
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  overflow: auto;
-  grid-area: main;
-  -ms-overflow-style: none;
-}
-main::-webkit-scrollbar {
-  display: none;
-}
-
-main .newPostForm {
-  background-color: #1e1e2e;
-  border-radius: 4px;
-  display: grid;
-  grid-template:
-    "profilePicture newPostContent" auto
-    "profilePicture newPostButton" 44px/44px auto;
-  gap: 0.6em;
-  padding: 0.6em;
-}
-.newPostForm button {
-  justify-self: end;
-  align-self: center;
-  grid-area: newPostButton;
-  background-color: #607eaf;
-  border: none;
-  border-radius: 8px;
-  padding: 0.6em;
-  color: #fefffa;
-}
-.newPostForm textarea {
-  border: none;
-  overflow: auto;
-  outline: none;
-  box-shadow: none;
-  resize: none;
-  color: #cdd6f4;
-  height: 5em;
-  background-color: #1e1e2e;
-  grid-area: newPostContent;
-  font-size: 1em;
-}
-.newPostForm textarea::placeholder {
-  color: #7f849c;
-}
-.postsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
+  .appTitle {
+    grid-area: appTitle;
+  }
+  .tabTitle {
+    background-color: #1e1e2e;
+    padding: 0.8em;
+    font-size: 1.2em;
+    border-radius: 4px;
+  }
+  .sidebar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .sidebarMenu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      li {
+        background-color: #1e1e2e;
+        padding: 0.8em;
+        border-radius: 4px;
+      }
+    }
+  }
+  .postsTitle {
+    grid-area: postsTitle;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow: auto;
+    grid-area: main;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .newPostForm {
+      background-color: #1e1e2e;
+      border-radius: 4px;
+      display: grid;
+      grid-template:
+        "profilePicture newPostContent" auto
+        "profilePicture newPostButton" 44px/44px auto;
+      gap: 0.6em;
+      padding: 0.6em;
+      textarea {
+        border: none;
+        overflow: auto;
+        outline: none;
+        box-shadow: none;
+        resize: none;
+        color: #cdd6f4;
+        height: 5em;
+        background-color: #1e1e2e;
+        grid-area: newPostContent;
+        font-size: 1em;
+        &::placeholder {
+          color: #7f849c;
+        }
+      }
+      button {
+        justify-self: end;
+        align-self: center;
+        grid-area: newPostButton;
+        background-color: #607eaf;
+        border: none;
+        border-radius: 8px;
+        padding: 0.6em;
+        color: #fefffa;
+      }
+    }
+    .postsContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+    }
+  }
+  .searchContainer {
+    grid-area: searchContainer;
+    background-color: #1e1e2e;
+    display: flex;
+    border-radius: 4px;
+    padding: 1em;
+    .search {
+      border: none;
+      outline: none;
+      box-shadow: none;
+      color: #cdd6f4;
+      background-color: #1e1e2e;
+      width: 100%;
+      padding-left: 0.5em;
+    }
+  }
+  .sidebar-right {
+    grid-area: sidebar-right;
+  }
 }
