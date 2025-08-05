@@ -1,3 +1,43 @@
+.postContainer {
+  position: relative;
+}
+.moreMenuScreenBlock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.moreMenu {
+  position: absolute;
+  z-index: 2;
+  top: calc(0.5em - 2px);
+  right: 1.2em;
+  background-color: #1e1e2e;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px 2px #313244;
+  li {
+    svg {
+      margin-right: 8px;
+      font-size: 1em;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      background-color: inherit;
+      color: inherit;
+      border: none;
+      &:hover {
+        cursor: pointer;
+        background-color: #313244;
+      }
+    }
+  }
+}
 .post {
   background-color: #1e1e2e;
   border-radius: 4px;
@@ -8,6 +48,18 @@
     "profilePicture interactions interactions interactions interactions" / 44px auto auto 33px 33px;
   padding: 0.6em;
   gap: 0.6em;
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 0 #89b4fa;
+    cursor: pointer;
+    background-color: #212132;
+  }
+  &.active {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 0 #89b4fa;
+    background-color: #212132;
+  }
   .profilePictureWrapper {
     grid-area: profilePicture;
     display: flex;
@@ -68,8 +120,6 @@
     }
   }
   .moreArea {
-    grid-area: moreArea;
-    position: relative;
     .moreButton {
       background-color: inherit;
       border: none;
@@ -79,43 +129,6 @@
       &:hover {
         cursor: pointer;
         background-color: #313244;
-      }
-    }
-    .moreMenuScreenBlock {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0;
-      z-index: 1;
-    }
-    .moreMenu {
-      position: absolute;
-      z-index: 2;
-      top: 45%;
-      right: 40%;
-      background-color: #1e1e2e;
-      border-radius: 4px;
-      box-shadow: 0px 0px 8px 2px #313244;
-      li {
-        svg {
-          margin-right: 8px;
-          font-size: 1em;
-        }
-        button {
-          width: 100%;
-          padding: 8px;
-          display: flex;
-          align-items: center;
-          background-color: inherit;
-          color: inherit;
-          border: none;
-          &:hover {
-            cursor: pointer;
-            background-color: #313244;
-          }
-        }
       }
     }
   }
@@ -158,9 +171,20 @@
       .likedALot {
         font-weight: 800;
       }
+      &.likeButton:hover {
+        color: rgb(243, 139, 168);
+        background-color: rgba(243, 139, 168, 0.1);
+      }
+      &.commentButton:hover {
+        color: rgb(137, 180, 250);
+        background-color: rgba(137, 180, 250, 0.1);
+      }
+      &.repostButton:hover {
+        color: #a6e3a1;
+        background-color: rgba(166, 227, 161, 0.1);
+      }
       &:hover {
         cursor: pointer;
-        background-color: #313244;
       }
     }
   }

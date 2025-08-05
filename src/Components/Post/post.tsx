@@ -71,8 +71,52 @@ const PostElement = ({
     }
   };
   return (
-    <>
-      <div className="post" ref={refProp}>
+    <div className="postContainer">
+      {showMore ? (
+        <>
+          <div
+            className="moreMenuScreenBlock"
+            onClick={() => {
+              setShowMore(false);
+            }}
+          ></div>
+          <ul className="moreMenu">
+            <li>
+              <button
+                onClick={() => {
+                  setShowMore(false);
+                  handleEditClick(post.id, post.content);
+                }}
+              >
+                <Fa icon={faPenToSquare} /> Edit
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  setShowMore(false);
+                  handleDeleteClick(post.id);
+                }}
+              >
+                <Fa icon={faTrash} /> Delete
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  setShowMore(false);
+                  handleRemoveLikesClick(post.id);
+                }}
+              >
+                <Fa icon={faHeartBroken} /> Remove All Likes
+              </button>
+            </li>
+          </ul>
+        </>
+      ) : (
+        ""
+      )}
+      <div className={`post ${showMore ? "active" : ""}`} ref={refProp}>
         <div className="profilePictureWrapper">
           <div className="profilePicture"></div>
         </div>
@@ -105,60 +149,16 @@ const PostElement = ({
           >
             <Fa icon={faEllipsis} />
           </button>
-          {showMore ? (
-            <>
-              <div
-                className="moreMenuScreenBlock"
-                onClick={() => {
-                  setShowMore(false);
-                }}
-              ></div>
-              <ul className="moreMenu">
-                <li>
-                  <button
-                    onClick={() => {
-                      setShowMore(false);
-                      handleEditClick(post.id, post.content);
-                    }}
-                  >
-                    <Fa icon={faPenToSquare} /> Edit
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => {
-                      setShowMore(false);
-                      handleDeleteClick(post.id);
-                    }}
-                  >
-                    <Fa icon={faTrash} /> Delete
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => {
-                      setShowMore(false);
-                      handleRemoveLikesClick(post.id);
-                    }}
-                  >
-                    <Fa icon={faHeartBroken} /> Remove All Likes
-                  </button>
-                </li>
-              </ul>
-            </>
-          ) : (
-            ""
-          )}
         </div>
 
         <div className="postText">{post.content}</div>
         <div className="interactions">
-          <button>
+          <button className="commentButton">
             <Fa icon={faComment} />
             <div className="counter">0</div>
           </button>
 
-          <button>
+          <button className="repostButton">
             <Fa icon={faRepeat} />
             <div className="counter">0</div>
           </button>
@@ -167,14 +167,14 @@ const PostElement = ({
             onClick={() => {
               onLike(post.id);
             }}
-            className={post.likes > 0 ? "likedPost" : ""}
+            className={`${post.likes > 0 ? "likedPost" : ""} likeButton`}
           >
             <Fa icon={post.likes > 0 ? faHeartSolid : faHeartRegular} />
             <div className={`counter ${likeCounterStyle()}`}>{likes}</div>
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default PostElement;
