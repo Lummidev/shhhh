@@ -44,6 +44,7 @@ const PostElement = ({
   post,
   onLike,
   likes,
+  refProp,
 }: {
   displayName: string;
   username: string;
@@ -53,6 +54,7 @@ const PostElement = ({
   onLike: (id: string) => Promise<void>;
   likes: number;
   post: Post;
+  refProp: ((node: HTMLDivElement) => void) | undefined;
 }) => {
   const edited = post.created_at !== post.updated_at;
   const [showMore, setShowMore] = useState(false);
@@ -60,22 +62,17 @@ const PostElement = ({
     switch (true) {
       case likes >= 100:
         return "likedALot";
-        break;
       case likes >= 20:
         return "veryLiked";
-        break;
       case likes >= 5:
         return "kindaLiked";
-        break;
-
       default:
         return "";
-        break;
     }
   };
   return (
     <>
-      <div className="post">
+      <div className="post" ref={refProp}>
         <div className="profilePictureWrapper">
           <div className="profilePicture"></div>
         </div>

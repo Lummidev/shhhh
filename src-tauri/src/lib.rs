@@ -11,7 +11,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
-            commands::get_many,
+            commands::get_page,
             commands::save,
             commands::get_all,
             commands::remove,

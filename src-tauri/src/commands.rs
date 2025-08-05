@@ -1,8 +1,42 @@
-use crate::database::{models::Post, post_repository};
+use serde::Serialize;
 
+use crate::database::{models::Post, post_repository};
+#[derive(Serialize)]
+pub struct Page {
+    posts: Vec<Post>,
+    total: u32,
+}
 #[tauri::command]
-pub fn get_many(amount: u32, offset: u32) -> Vec<Post> {
-    post_repository::get_many(amount, offset)
+pub fn get_page(amount_per_page: u32, page: u32) -> Result<Page, String> {
+    if page == 0 {
+        return Err("Pages start at 1".to_string());
+    }
+    if amount_per_page == 0 {
+        return Err("0 posts per page is not allowed".to_string());
+    }
+    let total = match post_repository::count_total() {
+        Err(e) => return Err(e.to_string()),
+        Ok(count) => count,
+    };
+    if total == 0 {
+        return Ok(Page {
+            posts: vec![],
+            total: 0,
+        });
+    }
+    let offset = (page - 1) * amount_per_page;
+    if offset >= total {
+        return Err(format!(
+            "Tried to get the {}th post when there were {} total",
+            offset + 1,
+            total
+        ));
+    }
+    let posts = match post_repository::get_page(amount_per_page, offset) {
+        Err(e) => return Err(e.to_string()),
+        Ok(posts) => posts,
+    };
+    Ok(Page { posts, total })
 }
 
 #[tauri::command]

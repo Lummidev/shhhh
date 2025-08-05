@@ -1,6 +1,9 @@
 import { invoke } from "@tauri-apps/api/core";
 import Post from "./Types/Post";
-
+interface Page {
+  posts: Post[];
+  total: number;
+}
 export default {
   posts: {
     get: async (id: string): Promise<Post | undefined> => {
@@ -9,8 +12,8 @@ export default {
     _get_all: async () => {
       return (await invoke("get_all")) as Post[];
     },
-    get_many: async (amount: number, offset: number): Promise<Post[]> => {
-      return (await invoke("get_many", { amount, offset })) as Post[];
+    getPage: async (page: number, amountPerPage: number = 6): Promise<Page> => {
+      return (await invoke("get_page", { amountPerPage, page })) as Page;
     },
     save: async (content: String): Promise<Post> => {
       return (await invoke("save", { content })) as Post;
