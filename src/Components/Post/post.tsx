@@ -154,31 +154,35 @@ const PostElement = ({
 
         <div className="postText">{post.content}</div>
         <div className="interactions">
-          <button className="commentButton">
-            <Fa
-              icon={faComment}
+          <div className="interactionContainer">
+            <button className="commentButton">
+              <Fa
+                icon={faComment}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              />
+              <div className="counter">0</div>
+            </button>
+          </div>
+          <div className="interactionContainer">
+            <button className="repostButton">
+              <Fa icon={faRepeat} />
+              <div className="counter">0</div>
+            </button>
+          </div>
+          <div className="interactionContainer">
+            <button
               onClick={(e) => {
+                onLike(post.id);
                 e.stopPropagation();
               }}
-            />
-            <div className="counter">0</div>
-          </button>
-
-          <button className="repostButton">
-            <Fa icon={faRepeat} />
-            <div className="counter">0</div>
-          </button>
-
-          <button
-            onClick={(e) => {
-              onLike(post.id);
-              e.stopPropagation();
-            }}
-            className={`${post.likes > 0 ? "likedPost" : ""} likeButton`}
-          >
-            <Fa icon={post.likes > 0 ? faHeartSolid : faHeartRegular} />
-            <div className={`counter ${likeCounterStyle()}`}>{likes}</div>
-          </button>
+              className={`${post.likes > 0 ? "likedPost" : ""} likeButton`}
+            >
+              <Fa icon={post.likes > 0 ? faHeartSolid : faHeartRegular} />
+              <div className={`counter ${likeCounterStyle()}`}>{likes}</div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
