@@ -40,8 +40,11 @@ pub fn get_page(amount_per_page: u32, page: u32) -> Result<Page, String> {
 }
 
 #[tauri::command]
-pub fn get(post_id: String) -> Option<Post> {
-    post_repository::get(post_id)
+pub fn get(id: String) -> Result<Option<Post>, String> {
+    match post_repository::get(id) {
+        Ok(post) => Ok(post),
+        Err(e) => Err(e.to_string()),
+    }
 }
 #[tauri::command]
 pub fn save(content: String) -> Post {

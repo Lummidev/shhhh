@@ -1,0 +1,144 @@
+:root {
+  --mainPostPadding: 15px;
+}
+.mainPostMoreMenu {
+  .moreMenu {
+    top: var(--mainPostPadding);
+    right: var(--mainPostPadding);
+  }
+}
+.mainPostContainer {
+  position: relative;
+}
+.mainPost {
+  background-color: var(--post-background);
+  display: grid;
+  grid-template:
+    "profilePicture userInfo moreArea"
+    "content content content"
+    "dateInfo dateInfo dateInfo"
+    "interactions interactions interactions" / 44px auto 44px;
+  gap: 10px;
+  padding: var(--mainPostPadding);
+  border-radius: 4px;
+  .profilePicture {
+    grid-area: profilePicture;
+    background-color: var(--mocha-surface0);
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+  }
+  .userInfo {
+    grid-area: userInfo;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 5px;
+    .displayName {
+      font-weight: 600;
+      margin-right: 0.2em;
+    }
+    .username {
+      color: #7f849c;
+      font-family: "Ubuntu Variable", sans-serif;
+    }
+  }
+  .moreArea {
+    grid-area: moreArea;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    .moreButton {
+      background-color: inherit;
+      border: none;
+      color: inherit;
+      border-radius: 4px;
+      padding: 4px;
+      &:hover {
+        cursor: pointer;
+        background-color: #313244;
+      }
+    }
+  }
+  .content {
+    grid-area: content;
+    margin: 5px 0px 10px 0px;
+  }
+  .dateInfo {
+    grid-area: dateInfo;
+    font-size: 0.95em;
+    display: flex;
+    gap: 4px;
+    .postDate {
+      color: var(--mocha-overlay2);
+    }
+    .editedDate {
+      color: var(--mocha-overlay1);
+    }
+  }
+  .interactions {
+    grid-area: interactions;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-items: flex-start;
+    border-top: 1px solid var(--mocha-surface0);
+    padding-top: 4px;
+    margin-top: 4px;
+    button {
+      padding: 4px;
+      background-color: inherit;
+      border: none;
+      border-radius: 4px;
+      color: inherit;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      font-size: 15px;
+      .counter {
+        display: flex;
+        margin-left: 0.5em;
+      }
+      &.likedPost svg {
+        color: #f38ba8;
+      }
+      .kindaLiked {
+        font-weight: 600;
+      }
+      .veryLiked {
+        font-weight: 700;
+      }
+      .likedALot {
+        font-weight: 800;
+      }
+      &.likeButton:hover {
+        color: var(--mocha-red);
+        background-color: color-mix(in srgb, var(--mocha-red) 10%, transparent);
+      }
+      &.commentButton:hover {
+        color: var(--mocha-blue);
+        background-color: color-mix(
+          in srgb,
+          var(--mocha-blue) 10%,
+          transparent
+        );
+      }
+      &.repostButton:hover {
+        color: var(--mocha-green);
+        background-color: color-mix(
+          in srgb,
+          var(--mocha-green) 10%,
+          transparent
+        );
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+/* .mainPost * { */
+/*   border: 1px solid var(--mocha-surface0); */
+/*   border-radius: 4px; */
+/* } */

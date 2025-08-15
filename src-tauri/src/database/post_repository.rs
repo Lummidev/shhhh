@@ -2,7 +2,7 @@ use crate::database::{connection::establish_connection, models::Post};
 use chrono::Utc;
 use diesel::{dsl::count_star, prelude::*};
 use uuid::Uuid;
-pub fn get(post_id: String) -> Option<Post> {
+pub fn get(post_id: String) -> Result<Option<Post>, diesel::result::Error> {
     use crate::database::schema::posts::dsl::*;
     let connection = &mut establish_connection();
     posts
@@ -10,7 +10,6 @@ pub fn get(post_id: String) -> Option<Post> {
         .select(Post::as_select())
         .first(connection)
         .optional()
-        .expect("Error loading posts")
 }
 pub fn get_all() -> Vec<Post> {
     use crate::database::schema::posts::dsl::*;

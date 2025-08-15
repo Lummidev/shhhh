@@ -36,6 +36,11 @@ body {
         background-color: #1e1e2e;
         padding: 0.8em;
         border-radius: 4px;
+        transition: background-color 0.1s;
+        &:hover {
+          cursor: pointer;
+          background-color: color-mix(in srgb, var(--mocha-base) 92%, white 2%);
+        }
       }
     }
   }

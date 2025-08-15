@@ -17,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./post.css";
 import { useState } from "react";
+import { MoreMenu, MoreMenuAction } from "../MoreMenu/moreMenu";
 dayjs.extend(relativeTimePlugin);
 dayjs.extend(updateLocalePluin);
 dayjs.updateLocale("en", {
@@ -41,6 +42,7 @@ const PostElement = ({
   handleDeleteClick,
   handleRemoveLikesClick,
   handleEditClick,
+  onClick,
   post,
   onLike,
   likes,
@@ -52,9 +54,10 @@ const PostElement = ({
   handleRemoveLikesClick: (id: string) => Promise<void>;
   handleEditClick: (id: string, currentContent: string) => Promise<void>;
   onLike: (id: string) => Promise<void>;
+  onClick?: () => void;
   likes: number;
   post: Post;
-  refProp: ((node: HTMLDivElement) => void) | undefined;
+  refProp?: (node: HTMLDivElement) => void;
 }) => {
   const edited = post.created_at !== post.updated_at;
   const [showMore, setShowMore] = useState(false);
@@ -70,53 +73,50 @@ const PostElement = ({
         return "";
     }
   };
+  const moreMenuActions: MoreMenuAction[] = [
+    {
+      icon: faPenToSquare,
+      effect: () => {
+        handleEditClick(post.id, post.content);
+      },
+      text: "Edit",
+    },
+    {
+      icon: faTrash,
+      effect: () => {
+        handleDeleteClick(post.id);
+      },
+      text: "Delete",
+    },
+    {
+      icon: faHeartBroken,
+      effect: () => {
+        handleRemoveLikesClick(post.id);
+      },
+      text: "Remove All Likes",
+    },
+  ];
   return (
     <div className="postContainer">
       {showMore ? (
         <>
-          <div
-            className="moreMenuScreenBlock"
-            onClick={() => {
-              setShowMore(false);
-            }}
-          ></div>
-          <ul className="moreMenu">
-            <li>
-              <button
-                onClick={() => {
-                  setShowMore(false);
-                  handleEditClick(post.id, post.content);
-                }}
-              >
-                <Fa icon={faPenToSquare} /> Edit
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => {
-                  setShowMore(false);
-                  handleDeleteClick(post.id);
-                }}
-              >
-                <Fa icon={faTrash} /> Delete
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => {
-                  setShowMore(false);
-                  handleRemoveLikesClick(post.id);
-                }}
-              >
-                <Fa icon={faHeartBroken} /> Remove All Likes
-              </button>
-            </li>
-          </ul>
+          <div className="postMoreMenu">
+            <MoreMenu
+              closeMenu={() => {
+                setShowMore(false);
+              }}
+              actions={moreMenuActions}
+            />
+          </div>
         </>
       ) : (
         ""
       )}
-      <div className={`post ${showMore ? "active" : ""}`} ref={refProp}>
+      <div
+        className={`post ${showMore ? "active" : ""}`}
+        ref={refProp}
+        onClick={onClick}
+      >
         <div className="profilePictureWrapper">
           <div className="profilePicture"></div>
         </div>
@@ -143,8 +143,9 @@ const PostElement = ({
         <div className="moreArea">
           <button
             className="moreButton"
-            onClick={() => {
+            onClick={(e) => {
               setShowMore(!showMore);
+              e.stopPropagation();
             }}
           >
             <Fa icon={faEllipsis} />
@@ -154,7 +155,12 @@ const PostElement = ({
         <div className="postText">{post.content}</div>
         <div className="interactions">
           <button className="commentButton">
-            <Fa icon={faComment} />
+            <Fa
+              icon={faComment}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            />
             <div className="counter">0</div>
           </button>
 
@@ -164,8 +170,9 @@ const PostElement = ({
           </button>
 
           <button
-            onClick={() => {
+            onClick={(e) => {
               onLike(post.id);
+              e.stopPropagation();
             }}
             className={`${post.likes > 0 ? "likedPost" : ""} likeButton`}
           >
