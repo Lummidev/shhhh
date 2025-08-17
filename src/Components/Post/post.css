@@ -12,26 +12,26 @@
   }
 }
 .post {
-  background-color: #1e1e2e;
+  background-color: var(--theme-base);
   border-radius: 4px;
   display: grid;
   grid-template:
     "profilePicture userInfo userInfo userInfo moreArea"
     "profilePicture postText postText postText postText"
-    "profilePicture interactions interactions interactions interactions" / 44px auto auto 33px 33px;
+    "profilePicture interactions interactions interactions interactions" / 44px auto auto auto 33px;
   padding: var(--postPadding);
   gap: 0.5em;
   transition: all 0.2s;
-  &:hover {
-    transform: translateY(var(--popupAmount));
-    box-shadow: 0 2px 0 #89b4fa;
-    cursor: pointer;
-    background-color: #212132;
-  }
+  &:hover,
   &.active {
     transform: translateY(var(--popupAmount));
-    box-shadow: 0 2px 0 #89b4fa;
-    background-color: #212132;
+    box-shadow: 0 2px 0 var(--theme-blue);
+    cursor: pointer;
+    background-color: color-mix(
+      in srgb,
+      var(--theme-base) 99%,
+      var(--theme-opposite) 1%
+    );
   }
   .profilePictureWrapper {
     grid-area: profilePicture;
@@ -39,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     .profilePicture {
-      background-color: #313244;
+      background-color: var(--theme-surface0);
       height: 40px;
       width: 40px;
       border-radius: 8px;
@@ -55,34 +55,40 @@
       font-size: 0.9em;
     }
     .username {
-      color: #7f849c;
+      color: var(--theme-overlay1);
       font-size: 0.9em;
       font-family: "Ubuntu Variable", sans-serif;
     }
     .dateSeparator {
       -webkit-user-select: none;
       user-select: none;
-      color: #7f849c;
+      color: var(--theme-overlay1);
       margin: 0px 4px;
     }
     .dateInfo {
-      color: #bac2de;
+      color: var(--theme-subtext1);
       font-size: 0.78em;
       position: relative;
       display: inline-block;
       .dateTooltip {
+        --dateTooltipWidth: 240px;
         visibility: hidden;
-        background-color: rgba(17, 17, 27, 0.4);
+        background-color: color-mix(
+          in srgb,
+          var(--theme-crust) 60%,
+          transparent
+        );
+        margin-bottom: 4px;
         color: inherit;
         text-align: center;
         padding: 10px 0;
         border-radius: 4px;
         position: absolute;
         z-index: 1;
-        width: 240px;
+        width: var(--dateTooltipWidth);
         bottom: 100%;
         left: 50%;
-        margin-left: -120px;
+        margin-left: calc(var(--dateTooltipWidth) * -1 / 2);
         opacity: 0;
         transition: opacity 0.2s 0.3s ease;
       }
@@ -103,7 +109,7 @@
       padding: 4px;
       &:hover {
         cursor: pointer;
-        background-color: #313244;
+        background-color: var(--theme-surface0);
       }
     }
   }
@@ -135,7 +141,7 @@
           margin-left: 0.5em;
         }
         &.likedPost svg {
-          color: #f38ba8;
+          color: var(--theme-red);
         }
         .kindaLiked {
           font-weight: 600;
@@ -147,16 +153,28 @@
           font-weight: 800;
         }
         &.likeButton:hover {
-          color: rgb(243, 139, 168);
-          background-color: rgba(243, 139, 168, 0.1);
+          color: var(--theme-red);
+          background-color: color-mix(
+            in srgb,
+            var(--theme-red) 10%,
+            transparent
+          );
         }
         &.commentButton:hover {
-          color: rgb(137, 180, 250);
-          background-color: rgba(137, 180, 250, 0.1);
+          color: var(--theme-blue);
+          background-color: color-mix(
+            in srgb,
+            var(--theme-blue) 10%,
+            transparent
+          );
         }
         &.repostButton:hover {
-          color: #a6e3a1;
-          background-color: rgba(166, 227, 161, 0.1);
+          color: var(--theme-green);
+          background-color: color-mix(
+            in srgb,
+            var(--theme-green) 10%,
+            transparent
+          );
         }
         &:hover {
           cursor: pointer;

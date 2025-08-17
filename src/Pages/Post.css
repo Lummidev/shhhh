@@ -23,7 +23,7 @@
   border-radius: 4px;
   .profilePicture {
     grid-area: profilePicture;
-    background-color: var(--mocha-surface0);
+    background-color: var(--theme-surface0);
     height: 40px;
     width: 40px;
     border-radius: 8px;
@@ -39,7 +39,7 @@
       margin-right: 0.2em;
     }
     .username {
-      color: #7f849c;
+      color: var(--theme-overlay1);
       font-family: "Ubuntu Variable", sans-serif;
     }
   }
@@ -56,7 +56,7 @@
       padding: 4px;
       &:hover {
         cursor: pointer;
-        background-color: #313244;
+        background-color: var(--theme-surface0);
       }
     }
   }
@@ -70,10 +70,10 @@
     display: flex;
     gap: 4px;
     .postDate {
-      color: var(--mocha-overlay2);
+      color: var(--theme-overlay2);
     }
     .editedDate {
-      color: var(--mocha-overlay1);
+      color: var(--theme-overlay1);
     }
   }
   .interactions {
@@ -82,7 +82,7 @@
     grid-template-columns: auto auto auto;
     align-items: center;
     justify-items: flex-start;
-    border-top: 1px solid var(--mocha-surface0);
+    border-top: 1px solid var(--theme-surface0);
     padding-top: 4px;
     margin-top: 4px;
     button {
@@ -101,7 +101,7 @@
         margin-left: 0.5em;
       }
       &.likedPost svg {
-        color: #f38ba8;
+        color: var(--theme-red);
       }
       .kindaLiked {
         font-weight: 600;
@@ -113,22 +113,22 @@
         font-weight: 800;
       }
       &.likeButton:hover {
-        color: var(--mocha-red);
-        background-color: color-mix(in srgb, var(--mocha-red) 10%, transparent);
+        color: var(--theme-red);
+        background-color: color-mix(in srgb, var(--theme-red) 10%, transparent);
       }
       &.commentButton:hover {
-        color: var(--mocha-blue);
+        color: var(--theme-blue);
         background-color: color-mix(
           in srgb,
-          var(--mocha-blue) 10%,
+          var(--theme-blue) 10%,
           transparent
         );
       }
       &.repostButton:hover {
-        color: var(--mocha-green);
+        color: var(--theme-green);
         background-color: color-mix(
           in srgb,
-          var(--mocha-green) 10%,
+          var(--theme-green) 10%,
           transparent
         );
       }
@@ -139,6 +139,6 @@
   }
 }
 /* .mainPost * { */
-/*   border: 1px solid var(--mocha-surface0); */
+/*   border: 1px solid var(--theme-surface0); */
 /*   border-radius: 4px; */
 /* } */

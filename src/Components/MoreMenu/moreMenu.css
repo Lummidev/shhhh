@@ -10,9 +10,9 @@
 .moreMenu {
   position: absolute;
   z-index: 2;
-  background-color: #1e1e2e;
+  background-color: var(--theme-base);
   border-radius: 4px;
-  box-shadow: 0px 0px 8px 2px #313244;
+  box-shadow: 0px 0px 8px 2px var(--theme-surface0);
   li {
     svg {
       margin-right: 8px;
@@ -28,7 +28,7 @@
       border: none;
       &:hover {
         cursor: pointer;
-        background-color: #313244;
+        background-color: var(--theme-surface0);
       }
     }
   }

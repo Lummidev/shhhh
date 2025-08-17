@@ -15,7 +15,7 @@
     opacity: 1;
   }
   .EditPostModalContent {
-    background-color: #1e1e2e;
+    background-color: var(--theme-base);
     border-radius: 4px;
     display: grid;
     grid-template:
@@ -42,7 +42,7 @@
         grid-area: ModalUsername;
       }
       .ModalHandle {
-        color: #7f849c;
+        color: var(--theme-overlay1);
         font-size: 0.8em;
         grid-area: ModalHandle;
       }
@@ -51,7 +51,7 @@
       grid-area: ModalProfilePictureWrapper;
       .ModalProfilePicture {
         grid-area: ModalProfilePicture;
-        background-color: #313244;
+        background-color: var(--theme-surface0);
         height: 40px;
         width: 40px;
         border-radius: 8px;
@@ -74,15 +74,17 @@
         padding: 8px 16px;
         border-radius: 4px;
         border: none;
-        color: #cdd6f4;
         &:hover {
           cursor: pointer;
         }
         &.cancelEditButton {
-          background-color: #313244;
+          color: #cdd6f4;
+          background-color: var(--theme-surface0);
         }
         &.saveEditButton {
-          background-color: #607eaf;
+          font-weight: 600;
+          color: white;
+          background-color: var(--theme-blue);
         }
       }
     }

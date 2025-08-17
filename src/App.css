@@ -3,8 +3,8 @@
 }
 body {
   font-family: "Roboto Variable", sans-serif;
-  background-color: #11111b;
-  color: #cdd6f4;
+  background-color: var(--theme-crust);
+  color: var(--theme-text);
 }
 .container {
   display: grid;
@@ -19,27 +19,28 @@ body {
     grid-area: appTitle;
   }
   .tabTitle {
-    background-color: #1e1e2e;
+    background-color: var(--theme-base);
     padding: 0.8em;
     font-size: 1.2em;
     border-radius: 4px;
   }
   .sidebar-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
     .sidebarMenu {
       display: flex;
       flex-direction: column;
       gap: 0.8em;
       li {
-        background-color: #1e1e2e;
+        background-color: var(--theme-base);
         padding: 0.8em;
         border-radius: 4px;
         transition: background-color 0.1s;
         &:hover {
           cursor: pointer;
-          background-color: color-mix(in srgb, var(--mocha-base) 92%, white 2%);
+          background-color: color-mix(
+            in srgb,
+            var(--theme-base) 99%,
+            var(--theme-opposite) 1%
+          );
         }
       }
     }
@@ -58,7 +59,7 @@ body {
       display: none;
     }
     .newPostForm {
-      background-color: #1e1e2e;
+      background-color: var(--theme-base);
       border-radius: 4px;
       display: grid;
       grid-template:
@@ -72,24 +73,25 @@ body {
         outline: none;
         box-shadow: none;
         resize: none;
-        color: #cdd6f4;
+        color: var(--theme-text);
         height: 5em;
-        background-color: #1e1e2e;
+        background-color: inherit;
         grid-area: newPostContent;
         font-size: 1em;
         &::placeholder {
-          color: #7f849c;
+          color: var(--theme-overlay1);
         }
       }
       button {
         justify-self: end;
         align-self: center;
         grid-area: newPostButton;
-        background-color: #607eaf;
+        background-color: var(--theme-blue);
         border: none;
         border-radius: 8px;
         padding: 0.6em;
-        color: #fefffa;
+        font-weight: 500;
+        color: var(--theme-opposite);
       }
     }
     .postsContainer {
@@ -100,7 +102,7 @@ body {
   }
   .searchContainer {
     grid-area: searchContainer;
-    background-color: #1e1e2e;
+    background-color: var(--theme-base);
     display: flex;
     border-radius: 4px;
     padding: 1em;
@@ -108,8 +110,8 @@ body {
       border: none;
       outline: none;
       box-shadow: none;
-      color: #cdd6f4;
-      background-color: #1e1e2e;
+      color: var(--theme-text);
+      background-color: var(--theme-base);
       width: 100%;
       padding-left: 0.5em;
     }
