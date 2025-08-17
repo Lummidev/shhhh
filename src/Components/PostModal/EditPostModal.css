@@ -20,7 +20,6 @@
     display: grid;
     grid-template:
       "ModalTitle ModalTitle ModalTitle closeModal"
-      "ModalProfilePictureWrapper ModalUserInfo ModalUserInfo ModalUserInfo"
       "ModalProfilePictureWrapper EditPostInput EditPostInput EditPostInput"
       "ModalProfilePictureWrapper modalActions modalActions modalActions" / 44px auto auto auto;
     padding: 0.6em;
@@ -29,23 +28,8 @@
     box-shadow: 0px 0px 32px 4px rgba(0, 0, 0, 0.8);
     .ModalTitle {
       grid-area: ModalTitle;
-      font-weight: bold;
-      font-size: 16pt;
-    }
-    .ModalUserInfo {
-      grid-area: ModalUserInfo;
-      display: flex;
-      align-items: center;
-      .ModalUsername {
-        font-weight: 600;
-        margin-right: 0.2em;
-        grid-area: ModalUsername;
-      }
-      .ModalHandle {
-        color: var(--theme-overlay1);
-        font-size: 0.8em;
-        grid-area: ModalHandle;
-      }
+      font-size: 12pt;
+      align-self: center;
     }
     .ModalProfilePictureWrapper {
       grid-area: ModalProfilePictureWrapper;
@@ -60,9 +44,34 @@
     .closeModal {
       grid-area: closeModal;
       justify-self: end;
+      background: none;
+      border: none;
+      color: var(--theme-text);
+      border-radius: 4px;
+      &:hover {
+        background-color: var(--theme-surface0);
+        cursor: pointer;
+      }
     }
     .EditPostInput {
       grid-area: EditPostInput;
+      resize: none;
+      overflow: scroll;
+      background-color: inherit;
+      border: none;
+      border-bottom: 1px solid var(--theme-surface0);
+      min-height: 4pt;
+      outline: none;
+      color: var(--theme-text);
+      padding-bottom: 4px;
+      transition: border-bottom 0.2s;
+      max-height: 80vh;
+      &:focus {
+        border-bottom: 1px solid var(--theme-surface2);
+      }
+      &::placeholder {
+        color: var(--theme-overlay1);
+      }
     }
     .modalActions {
       grid-area: modalActions;
@@ -77,13 +86,9 @@
         &:hover {
           cursor: pointer;
         }
-        &.cancelEditButton {
-          color: #cdd6f4;
-          background-color: var(--theme-surface0);
-        }
         &.saveEditButton {
           font-weight: 600;
-          color: white;
+          color: var(--theme-opposite);
           background-color: var(--theme-blue);
         }
       }

@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 
 import "./EditPostModal.css";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+const minTextAreaHeight = 32;
 const EditPostModal = ({
   id,
-  displayName,
-  username,
   visible,
   setVisible,
   handleSave,
   textToEdit,
 }: {
   id: string;
-  displayName: string;
-  username: string;
   visible: boolean;
   setVisible: (visible: boolean) => void;
   handleSave: (id: string, newContent: string) => Promise<void>;
@@ -22,24 +19,27 @@ const EditPostModal = ({
 }) => {
   const [text, setText] = useState("");
   const [inputDisabled, setInputsDisabled] = useState(true);
+  const textareaRef = useRef<HTMLTextAreaElement>();
   const reset = () => {
     setText(textToEdit);
   };
+  useLayoutEffect(() => {
+    if (!textareaRef.current) return;
+    textareaRef.current.style.height = "inherit";
+    textareaRef.current.style.height = `${Math.max(textareaRef.current.scrollHeight, minTextAreaHeight) + 1}px`;
+  }, [text]);
   useEffect(() => {
     reset();
   }, [textToEdit]);
   useEffect(() => {
     setInputsDisabled(!visible);
   }, [visible]);
+
   return (
     <>
       <div className={`EditPostModal ${visible ? "open" : ""}`}>
         <div className="EditPostModalContent">
           <h2 className="ModalTitle">Edit Post</h2>
-          <div className="ModalUserInfo">
-            <div className="ModalUsername">{displayName}</div>
-            <div className="ModalHandle">@{username}</div>
-          </div>
 
           <div className="ModalProfilePictureWrapper">
             <div className="ModalProfilePicture"></div>
@@ -56,23 +56,16 @@ const EditPostModal = ({
           </button>
           <textarea
             className="EditPostInput"
+            ref={textareaRef}
             onChange={(e) => {
               setText(e.target.value);
             }}
             value={text}
             disabled={inputDisabled}
+            placeholder="Write your edited post here"
+            style={{ minHeight: minTextAreaHeight }}
           />
           <div className="modalActions">
-            <button
-              className="cancelEditButton"
-              onClick={() => {
-                setVisible(false);
-                reset();
-              }}
-              disabled={inputDisabled}
-            >
-              <Fa icon={faXmark} /> Cancel
-            </button>
             <button
               className="saveEditButton"
               onClick={() => {
@@ -82,7 +75,7 @@ const EditPostModal = ({
               }}
               disabled={inputDisabled}
             >
-              <Fa icon={faCheck} /> Save
+              <Fa icon={faCheck} /> Save Changes
             </button>
           </div>
         </div>
