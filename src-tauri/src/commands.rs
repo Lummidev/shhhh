@@ -47,8 +47,12 @@ pub fn get(id: String) -> Result<Option<Post>, String> {
     }
 }
 #[tauri::command]
-pub fn save(content: String) -> Post {
-    post_repository::save(content.trim().to_owned())
+pub fn save(content: String) -> Result<Post, String> {
+    let content = content.trim().to_owned();
+    if content.len() == 0 {
+        return Err("Empty posts are not allowed".to_string());
+    }
+    Ok(post_repository::save(content.trim().to_owned()))
 }
 #[tauri::command]
 pub fn get_all() -> Vec<Post> {

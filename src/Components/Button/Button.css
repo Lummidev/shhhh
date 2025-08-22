@@ -114,6 +114,19 @@
     box-shadow: none;
   }
 }
+.button-primary-disabled {
+  opacity: 50%;
+  background-color: lightgrey;
+  font-weight: 600;
+  color: grey;
+  transform: none;
+  &:hover {
+    cursor: default;
+  }
+  &:active {
+    transform: none;
+  }
+}
 .button-menu {
   gap: 10px;
   padding: 10px;

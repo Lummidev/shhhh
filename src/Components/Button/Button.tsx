@@ -12,7 +12,7 @@ export const Button = (props: PropsWithChildren<ButtonProps>) => {
   return (
     <button
       disabled={props.disabled}
-      className={`button-${props.buttonType} ${props.buttonType === "interaction" ? `interaction-${props.color}` : "button"} ${props.className ? props.className : ""} `}
+      className={`button-${props.buttonType}${props.disabled ? "-disabled" : ""} ${props.buttonType === "interaction" ? `interaction-${props.color}` : "button"} ${props.className ? props.className : ""} `}
       onClick={(e) => {
         props.onClick(e);
       }}

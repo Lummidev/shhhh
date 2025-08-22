@@ -86,7 +86,11 @@ export const Home = ({
               setNewPostContent(e.target.value);
             }}
           />
-          <Button onClick={addPost} buttonType="primary">
+          <Button
+            disabled={!(newPostContent.trim().length > 0)}
+            onClick={addPost}
+            buttonType="primary"
+          >
             Save
           </Button>
         </div>
