@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import PostComponent from "../Components/Post/post";
+import { useEffect, useState } from "react";
 import { usePosts } from "../Hooks/usePosts";
 import EditPostModal from "../Components/PostModal/EditPostModal";
 import { debounceLikesEffect, PageContext } from "../utils";
-
+import { PostFeed } from "../Components/PostFeed/PostFeed";
+import "./Home.css";
 export const Home = ({
   context,
   openPost,
@@ -17,7 +17,6 @@ export const Home = ({
   const [idToEdit, setIdToEdit] = useState("");
   const [likeActions, setLikeActions] = useState<{ likedPostID: string }[]>([]);
   const [page, setPage] = useState(1);
-  const paginationObserver = useRef<IntersectionObserver | null>(null);
   const {
     posts,
     loading,
@@ -31,28 +30,6 @@ export const Home = ({
     addLikesLocally,
   } = usePosts(page);
 
-  const lastPostElementRef = useCallback(
-    (node: HTMLDivElement) => {
-      if (loading) {
-        return;
-      }
-
-      if (paginationObserver.current) {
-        paginationObserver.current.disconnect();
-      }
-
-      paginationObserver.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPage(page + 1);
-        }
-      });
-      if (node) {
-        paginationObserver.current.observe(node);
-      }
-    },
-    [loading, hasMore],
-  );
-
   const addPost = async () => {
     await savePost(newPostContent);
     setNewPostContent("");
@@ -64,7 +41,7 @@ export const Home = ({
   const handleRemoveLikes = async (id: string) => {
     removeLikes(id);
   };
-  const launchModal = async (id: string, startText: string) => {
+  const openEditModal = async (id: string, startText: string) => {
     setTextToEdit(startText);
     setIdToEdit(id);
     setModalVisible(true);
@@ -110,33 +87,24 @@ export const Home = ({
           />
           <button onClick={addPost}>Save</button>
         </div>
-        <div className="postsContainer">
-          {posts.map((post, index) => (
-            <PostComponent
-              key={post.id}
-              refProp={
-                posts.length === index + 1 ? lastPostElementRef : undefined
-              }
-              displayName={context.displayName}
-              username={context.username}
-              handleDeleteClick={handleDelete}
-              handleRemoveLikesClick={handleRemoveLikes}
-              handleEditClick={launchModal}
-              post={post}
-              likes={post.likes}
-              onLike={handlePostLike}
-              onClick={() => {
-                openPost(post.id);
-              }}
-            />
-          ))}
-          {error ? <>{error.toString()}</> : loading ? <>Loading...</> : <></>}
-        </div>
+        <PostFeed
+          posts={posts}
+          context={context}
+          onEdit={openEditModal}
+          onLike={handlePostLike}
+          onDelete={handleDelete}
+          onRemoveLikes={handleRemoveLikes}
+          openPost={openPost}
+          error={error}
+          hasMore={hasMore}
+          nextPage={() => {
+            setPage(page + 1);
+          }}
+          loading={loading}
+        />
       </main>
       <EditPostModal
         id={idToEdit}
-        username={context.username}
-        displayName={context.displayName}
         setVisible={(visible: boolean) => {
           setModalVisible(visible);
         }}

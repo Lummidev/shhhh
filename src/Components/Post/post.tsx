@@ -39,9 +39,9 @@ dayjs.locale("en");
 const PostElement = ({
   displayName,
   username,
-  handleDeleteClick,
-  handleRemoveLikesClick,
-  handleEditClick,
+  onDelete,
+  onRemoveLikes,
+  onEdit,
   onClick,
   post,
   onLike,
@@ -50,9 +50,9 @@ const PostElement = ({
 }: {
   displayName: string;
   username: string;
-  handleDeleteClick: (id: string) => Promise<void>;
-  handleRemoveLikesClick: (id: string) => Promise<void>;
-  handleEditClick: (id: string, currentContent: string) => Promise<void>;
+  onDelete: (id: string) => Promise<void>;
+  onRemoveLikes: (id: string) => Promise<void>;
+  onEdit: (id: string, currentContent: string) => Promise<void>;
   onLike: (id: string) => Promise<void>;
   onClick?: () => void;
   likes: number;
@@ -77,21 +77,21 @@ const PostElement = ({
     {
       icon: faPenToSquare,
       effect: () => {
-        handleEditClick(post.id, post.content);
+        onEdit(post.id, post.content);
       },
       text: "Edit",
     },
     {
       icon: faTrash,
       effect: () => {
-        handleDeleteClick(post.id);
+        onDelete(post.id);
       },
       text: "Delete",
     },
     {
       icon: faHeartBroken,
       effect: () => {
-        handleRemoveLikesClick(post.id);
+        onRemoveLikes(post.id);
       },
       text: "Remove All Likes",
     },

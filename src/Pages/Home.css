@@ -1,0 +1,47 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  overflow: auto;
+  grid-area: main;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .newPostForm {
+    background-color: var(--theme-base);
+    border-radius: 4px;
+    display: grid;
+    grid-template:
+      "profilePicture newPostContent" auto
+      "profilePicture newPostButton" 44px/44px auto;
+    gap: 0.6em;
+    padding: 0.6em;
+    textarea {
+      border: none;
+      overflow: auto;
+      outline: none;
+      box-shadow: none;
+      resize: none;
+      color: var(--theme-text);
+      height: 5em;
+      background-color: inherit;
+      grid-area: newPostContent;
+      font-size: 1em;
+      &::placeholder {
+        color: var(--theme-overlay1);
+      }
+    }
+    button {
+      justify-self: end;
+      align-self: center;
+      grid-area: newPostButton;
+      background-color: var(--theme-blue);
+      border: none;
+      border-radius: 8px;
+      padding: 0.6em;
+      font-weight: 500;
+      color: var(--theme-opposite);
+    }
+  }
+}
