@@ -20,6 +20,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { MoreMenu, MoreMenuAction } from "../Components/MoreMenu/moreMenu";
 import EditPostModal from "../Components/PostModal/EditPostModal";
+import { Button } from "../Components/Button/Button";
 dayjs.extend(LocalizedFormat);
 export const PostPage = ({
   context,
@@ -171,17 +172,29 @@ export const PostPage = ({
                 )}
               </div>
               <div className="interactions">
-                <button className="commentButton">
+                <Button
+                  onClick={() => {}}
+                  buttonType="interaction"
+                  color="blue"
+                  className="commentButton"
+                >
                   <Fa icon={faComment} />
                   <div className="counter">0</div>
-                </button>
+                </Button>
 
-                <button className="repostButton">
+                <Button
+                  onClick={() => {}}
+                  buttonType="interaction"
+                  color="green"
+                  className="repostButton"
+                >
                   <Fa icon={faRepeat} />
                   <div className="counter">0</div>
-                </button>
+                </Button>
 
-                <button
+                <Button
+                  buttonType="interaction"
+                  color="red"
                   onClick={() => {
                     handlePostLike(post.id);
                   }}
@@ -191,7 +204,7 @@ export const PostPage = ({
                   <div className={`counter ${likeCounterStyle(post.likes)}`}>
                     {post.likes}
                   </div>
-                </button>
+                </Button>
               </div>
             </div>
           </div>

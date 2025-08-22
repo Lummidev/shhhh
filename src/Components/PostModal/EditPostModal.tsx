@@ -3,6 +3,7 @@ import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 
 import "./EditPostModal.css";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "../Button/Button";
 const minTextAreaHeight = 32;
 const EditPostModal = ({
   id,
@@ -66,8 +67,8 @@ const EditPostModal = ({
             style={{ minHeight: minTextAreaHeight }}
           />
           <div className="modalActions">
-            <button
-              className="saveEditButton"
+            <Button
+              buttonType="primary"
               onClick={() => {
                 handleSave(id, text).then(() => {
                   setVisible(false);
@@ -76,7 +77,7 @@ const EditPostModal = ({
               disabled={inputDisabled}
             >
               <Fa icon={faCheck} /> Save Changes
-            </button>
+            </Button>
           </div>
         </div>
       </div>

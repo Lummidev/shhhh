@@ -86,11 +86,6 @@
         &:hover {
           cursor: pointer;
         }
-        &.saveEditButton {
-          font-weight: 600;
-          color: var(--theme-opposite);
-          background-color: var(--theme-blue);
-        }
       }
     }
   }

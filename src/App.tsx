@@ -11,6 +11,7 @@ import {
 import { PostPage } from "./Pages/Post";
 import { PageContext, Pages } from "./utils";
 import { Home } from "./Pages/Home";
+import { Button } from "./Components/Button/Button";
 function App() {
   const [pageContext, setPageContext] = useState<PageContext>({
     currentPage: Pages.Home,
@@ -44,11 +45,15 @@ function App() {
         </h1>
         <aside className="sidebar-left">
           <ul className="sidebarMenu">
-            <li onClick={goToHome}>
-              <Fa icon={faHome} /> Home
+            <li>
+              <Button onClick={goToHome} buttonType="menu">
+                <Fa icon={faHome} /> Home
+              </Button>
             </li>
-            <li onClick={setUserInfo}>
-              <Fa icon={faUser} /> User
+            <li>
+              <Button onClick={setUserInfo} buttonType="menu">
+                <Fa icon={faUser} /> User
+              </Button>
             </li>
           </ul>
         </aside>

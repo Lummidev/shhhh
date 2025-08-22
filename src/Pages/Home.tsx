@@ -4,6 +4,7 @@ import EditPostModal from "../Components/PostModal/EditPostModal";
 import { debounceLikesEffect, PageContext } from "../utils";
 import { PostFeed } from "../Components/PostFeed/PostFeed";
 import "./Home.css";
+import { Button } from "../Components/Button/Button";
 export const Home = ({
   context,
   openPost,
@@ -85,7 +86,9 @@ export const Home = ({
               setNewPostContent(e.target.value);
             }}
           />
-          <button onClick={addPost}>Save</button>
+          <Button onClick={addPost} buttonType="primary">
+            Save
+          </Button>
         </div>
         <PostFeed
           posts={posts}

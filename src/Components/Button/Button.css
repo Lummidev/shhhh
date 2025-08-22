@@ -1,0 +1,137 @@
+:root {
+  --button-primary-color: var(--theme-opposite);
+  --button-primary-background-color: var(--theme-blue);
+  --button-menu-color: var(--theme-text);
+  --button-menu-background-color: var(--theme-base);
+  --button-interaction-popup-amount: 2px;
+  /* --button-popup-amount: px; */
+  /* defined in App.css to align with the app's grid */
+}
+.button {
+  padding: 0.6em;
+  border-radius: 8px;
+  transform: translateY(calc(-1 * var(--button-popup-amount)));
+  &:active {
+    transform: none;
+  }
+}
+.button,
+.button-interaction {
+  display: flex;
+  align-items: center;
+  transition: all 0.1s;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.button-interaction {
+  background: none;
+  color: inherit;
+  border-radius: 4px;
+  gap: 4px;
+  &:hover {
+    transform: translateY(calc(var(--button-interaction-popup-amount) * -1));
+    color: var(--theme-opposite) !important;
+    font-weight: 500;
+  }
+  &:active {
+    transform: none;
+  }
+}
+.interaction-red {
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--theme-red) 75%,
+      var(--theme-crust) 25%
+    );
+    box-shadow: 0 var(--button-interaction-popup-amount) 0
+      color-mix(in srgb, var(--theme-red) 40%, var(--theme-crust) 60%);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+.interaction-green {
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--theme-green) 70%,
+      var(--theme-crust) 30%
+    );
+    box-shadow: 0 var(--button-interaction-popup-amount) 0
+      color-mix(in srgb, var(--theme-green) 30%, var(--theme-crust) 70%);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.interaction-blue {
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--theme-blue) 80%,
+      var(--theme-crust) 20%
+    );
+    box-shadow: 0 var(--button-interaction-popup-amount) 0
+      color-mix(in srgb, var(--theme-blue) 40%, var(--theme-crust) 60%);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.button-primary {
+  background-color: var(--button-primary-background-color);
+  font-weight: 600;
+  box-shadow: 0 var(--button-popup-amount) 0
+    color-mix(
+      in srgb,
+      var(--button-primary-background-color) 50%,
+      var(--theme-crust) 50%
+    );
+  color: var(--theme-crust);
+  &:hover,
+  &:active {
+    color: var(--button-primary-color);
+  }
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--button-primary-background-color) 80%,
+      var(--theme-crust) 20%
+    );
+    box-shadow: 0 var(--button-popup-amount) 0
+      color-mix(
+        in srgb,
+        var(--button-primary-background-color) 40%,
+        var(--theme-crust) 60%
+      );
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+.button-menu {
+  gap: 10px;
+  padding: 10px;
+  font-size: 12pt;
+  background-color: var(--button-menu-background-color);
+  box-shadow: 0 var(--button-popup-amount) 0
+    color-mix(
+      in srgb,
+      var(--button-menu-background-color) 50%,
+      var(--theme-crust) 50%
+    );
+  color: var(--theme-text);
+  &:hover {
+    background-color: var(--theme-surface0);
+    box-shadow: 0 var(--button-popup-amount) 0
+      color-mix(in srgb, var(--theme-surface0) 50%, var(--theme-crust) 50%);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}

@@ -126,60 +126,19 @@
     margin-top: 0.4em;
     .interactionContainer {
       min-width: 4em;
-      button {
-        padding: 4px;
-        background-color: inherit;
-        border: none;
-        border-radius: 4px;
-        color: inherit;
-        transition: background-color 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-items: left;
-        .counter {
-          font-size: 0.85em;
-          margin-left: 0.5em;
-        }
-        &.likedPost svg {
-          color: var(--theme-red);
-        }
-        .kindaLiked {
-          font-weight: 600;
-        }
-        .veryLiked {
-          font-weight: 700;
-        }
-        .likedALot {
-          font-weight: 800;
-        }
-        &.likeButton:hover {
-          color: var(--theme-red);
-          background-color: color-mix(
-            in srgb,
-            var(--theme-red) 10%,
-            transparent
-          );
-        }
-        &.commentButton:hover {
-          color: var(--theme-blue);
-          background-color: color-mix(
-            in srgb,
-            var(--theme-blue) 10%,
-            transparent
-          );
-        }
-        &.repostButton:hover {
-          color: var(--theme-green);
-          background-color: color-mix(
-            in srgb,
-            var(--theme-green) 10%,
-            transparent
-          );
-        }
-        &:hover {
-          cursor: pointer;
-        }
-      }
+    }
+    .kindaLiked {
+      font-weight: 500;
+    }
+    .veryLiked {
+      font-weight: 600;
+    }
+    .likedALot {
+      font-weight: 700;
+    }
+
+    .likedPost {
+      color: var(--theme-red);
     }
   }
 }

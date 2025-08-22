@@ -18,6 +18,7 @@ import {
 import "./post.css";
 import { useState } from "react";
 import { MoreMenu, MoreMenuAction } from "../MoreMenu/moreMenu";
+import { Button } from "../Button/Button";
 dayjs.extend(relativeTimePlugin);
 dayjs.extend(updateLocalePluin);
 dayjs.updateLocale("en", {
@@ -155,33 +156,44 @@ const PostElement = ({
         <div className="postText">{post.content}</div>
         <div className="interactions">
           <div className="interactionContainer">
-            <button className="commentButton">
-              <Fa
-                icon={faComment}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              />
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              buttonType="interaction"
+              className="commentButton"
+              color="blue"
+            >
+              <Fa icon={faComment} />
               <div className="counter">0</div>
-            </button>
+            </Button>
           </div>
           <div className="interactionContainer">
-            <button className="repostButton">
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              buttonType="interaction"
+              className="repostButton"
+              color="green"
+            >
               <Fa icon={faRepeat} />
               <div className="counter">0</div>
-            </button>
+            </Button>
           </div>
           <div className="interactionContainer">
-            <button
+            <Button
+              buttonType="interaction"
               onClick={(e) => {
                 onLike(post.id);
                 e.stopPropagation();
               }}
-              className={`${post.likes > 0 ? "likedPost" : ""} likeButton`}
+              color="red"
+              className={`${post.likes > 0 ? "likedPost" : ""}`}
             >
               <Fa icon={post.likes > 0 ? faHeartSolid : faHeartRegular} />
               <div className={`counter ${likeCounterStyle()}`}>{likes}</div>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

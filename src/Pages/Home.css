@@ -36,12 +36,6 @@ main {
       justify-self: end;
       align-self: center;
       grid-area: newPostButton;
-      background-color: var(--theme-blue);
-      border: none;
-      border-radius: 8px;
-      padding: 0.6em;
-      font-weight: 500;
-      color: var(--theme-opposite);
     }
   }
 }
