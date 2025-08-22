@@ -63,6 +63,8 @@
   .content {
     grid-area: content;
     margin: 5px 0px 10px 0px;
+    word-break: break-word;
+    white-space: pre-wrap;
   }
   .dateInfo {
     grid-area: dateInfo;
