@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import Post from "../Types/Post";
 import backend from "../backend";
-export const usePosts = (page: number, amountPerPage: number = 6) => {
+export const usePosts = (
+  page: number,
+  filter?: string,
+  amountPerPage: number = 6,
+) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
@@ -42,24 +46,33 @@ export const usePosts = (page: number, amountPerPage: number = 6) => {
     }
   };
   useEffect(() => {
+    if (filter && filter.length > 0) setPosts([]);
+  }, [filter]);
+  useEffect(() => {
     const getPage = async () => {
       setLoading(true);
       setError(null);
+
       try {
-        let page_response = await backend.posts.getPage(page, amountPerPage);
+        let page_response = await (filter && filter.trim().length > 0
+          ? backend.posts.getPage(page, amountPerPage, filter.trim())
+          : backend.posts.getPage(page, amountPerPage));
         const newPosts = [...posts, ...page_response.posts];
         setPosts(newPosts);
         setHasMore(newPosts.length < page_response.total);
         setLoading(false);
+        console.log(newPosts);
       } catch (e) {
         setError(e);
+        console.error(e);
       }
     };
+    console.log({ page, amountPerPage, hasMore });
     if (page <= 0 || amountPerPage <= 0 || !hasMore) {
       return;
     }
     getPage();
-  }, [page, amountPerPage]);
+  }, [page, amountPerPage, filter]);
   return {
     posts,
     loading,

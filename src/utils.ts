@@ -1,6 +1,7 @@
 export enum Pages {
   Home,
   Post,
+  Search,
 }
 export interface PageContext {
   currentPage: Pages;

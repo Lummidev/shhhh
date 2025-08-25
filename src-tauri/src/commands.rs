@@ -7,14 +7,14 @@ pub struct Page {
     total: u32,
 }
 #[tauri::command]
-pub fn get_page(amount_per_page: u32, page: u32) -> Result<Page, String> {
+pub fn get_page(amount_per_page: u32, page: u32, search: Option<String>) -> Result<Page, String> {
     if page == 0 {
         return Err("Pages start at 1".to_string());
     }
     if amount_per_page == 0 {
         return Err("0 posts per page is not allowed".to_string());
     }
-    let total = match post_repository::count_total() {
+    let total = match post_repository::count_total(&search) {
         Err(e) => return Err(e.to_string()),
         Ok(count) => count,
     };
@@ -32,7 +32,7 @@ pub fn get_page(amount_per_page: u32, page: u32) -> Result<Page, String> {
             total
         ));
     }
-    let posts = match post_repository::get_page(amount_per_page, offset) {
+    let posts = match post_repository::get_page(amount_per_page, offset, &search) {
         Err(e) => return Err(e.to_string()),
         Ok(posts) => posts,
     };

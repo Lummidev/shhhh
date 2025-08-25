@@ -3,16 +3,15 @@ import "./reset.css";
 import "./variables.css";
 import "./App.css";
 import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faUser,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faHome } from "@fortawesome/free-solid-svg-icons";
 import { PostPage } from "./Pages/Post";
 import { PageContext, Pages } from "./utils";
 import { Home } from "./Pages/Home";
 import { Button } from "./Components/Button/Button";
+import { Search } from "./Pages/Search";
+import { SearchBar } from "./Components/SearchBar/SearchBar";
 function App() {
+  const [currentSearch, setCurrentSearch] = useState("");
   const [pageContext, setPageContext] = useState<PageContext>({
     currentPage: Pages.Home,
     username: "Username",
@@ -36,6 +35,18 @@ function App() {
       currentPage: Pages.Home,
       post_id: undefined,
     });
+    setCurrentSearch("");
+  };
+  const startSearch = (search: string) => {
+    console.log("started search");
+    let searchTrim = search.trim();
+
+    if (searchTrim.length > 0) {
+      setCurrentSearch(searchTrim);
+      setPageContext({ ...pageContext, currentPage: Pages.Search });
+    } else {
+      goToHome();
+    }
   };
   const MenuBar = () => {
     return (
@@ -72,6 +83,14 @@ function App() {
             goToHome={goToHome}
           />
         );
+      case Pages.Search:
+        return (
+          <Search
+            context={pageContext}
+            openPost={openPost}
+            filter={currentSearch}
+          />
+        );
     }
   };
   const CurrentTab = () => {
@@ -80,9 +99,14 @@ function App() {
         return <h2>Home</h2>;
       case Pages.Post:
         return <h2>Post</h2>;
+      case Pages.Search:
+        return (
+          <h2>
+            Searching for <i>{currentSearch}</i>
+          </h2>
+        );
     }
   };
-
   return (
     <>
       <div className="container">
@@ -91,12 +115,7 @@ function App() {
           <CurrentTab />
         </div>
         <CurrentPage />
-        <div className="searchContainer">
-          <div className="searchIcon">
-            <Fa icon={faMagnifyingGlass} />
-          </div>
-          <input type="text" placeholder="Search" className="search" />
-        </div>
+        <SearchBar onSearch={startSearch} />
         <aside className="sidebar-right"></aside>
       </div>
     </>

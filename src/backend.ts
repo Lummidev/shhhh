@@ -12,8 +12,16 @@ export default {
     _get_all: async () => {
       return (await invoke("get_all")) as Post[];
     },
-    getPage: async (page: number, amountPerPage: number = 6): Promise<Page> => {
-      return (await invoke("get_page", { amountPerPage, page })) as Page;
+    getPage: async (
+      page: number,
+      amountPerPage: number = 6,
+      search?: string,
+    ): Promise<Page> => {
+      return (await invoke("get_page", {
+        amountPerPage,
+        page,
+        search,
+      })) as Page;
     },
     save: async (content: String): Promise<Post> => {
       return (await invoke("save", { content })) as Post;

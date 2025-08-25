@@ -1,0 +1,16 @@
+.search-bar {
+  grid-area: searchContainer;
+  background-color: var(--theme-base);
+  display: flex;
+  border-radius: 4px;
+  padding: 1em;
+  .search {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: var(--theme-text);
+    background-color: var(--theme-base);
+    width: 100%;
+    padding-left: 0.5em;
+  }
+}
