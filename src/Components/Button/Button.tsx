@@ -3,7 +3,7 @@ import "./Button.css";
 export type ButtonProps = {
   onClick: (e: MouseEvent<HTMLButtonElement>) => any;
   disabled?: boolean;
-  buttonType: "primary" | "menu" | "interaction";
+  buttonType: "primary" | "secondary" | "menu" | "interaction";
   className?: string;
   color?: "red" | "green" | "blue";
 };

@@ -9,10 +9,12 @@ export const FeedView = ({
   context,
   openPost,
   filter,
+  hideCompose,
 }: {
   context: PageContext;
   openPost: (id: string) => void;
   filter?: string;
+  hideCompose?: boolean;
 }) => {
   const [newPostContent, setNewPostContent] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
@@ -57,7 +59,7 @@ export const FeedView = ({
     setLikeActions([...likeActions, { likedPostID: id }]);
     addLikesLocally(id, 1);
   };
-  const searching = filter && filter.trim().length !== 0;
+  const showCompose = (!filter || filter.trim().length === 0) && !hideCompose;
   useEffect(() => {
     setPage(1);
   }, [filter]);
@@ -80,7 +82,7 @@ export const FeedView = ({
   return (
     <>
       <main className="feed-view">
-        {!searching ? (
+        {showCompose ? (
           <div className="newPostForm">
             <div className="profilePictureWrapper">
               <div className="profilePicture"></div>

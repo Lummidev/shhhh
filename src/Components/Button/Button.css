@@ -1,6 +1,8 @@
 :root {
   --button-primary-color: var(--theme-opposite);
   --button-primary-background-color: var(--theme-blue);
+  --button-secondary-color: var(--theme-crust);
+  --button-secondary-background-color: var(--theme-opposite);
   --button-menu-color: var(--theme-text);
   --button-menu-background-color: var(--theme-base);
   --button-interaction-popup-amount: 2px;
@@ -125,6 +127,37 @@
   }
   &:active {
     transform: none;
+  }
+}
+.button-secondary {
+  background-color: var(--button-secondary-background-color);
+  font-weight: 600;
+  box-shadow: 0 var(--button-popup-amount) 0
+    color-mix(
+      in srgb,
+      var(--button-secondary-background-color) 50%,
+      var(--theme-crust) 50%
+    );
+  color: var(--theme-crust);
+  &:hover,
+  &:active {
+    color: var(--button-secondary-color);
+  }
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--button-secondary-background-color) 80%,
+      var(--theme-crust) 20%
+    );
+    box-shadow: 0 var(--button-popup-amount) 0
+      color-mix(
+        in srgb,
+        var(--button-secondary-background-color) 40%,
+        var(--theme-crust) 60%
+      );
+  }
+  &:active {
+    box-shadow: none;
   }
 }
 .button-menu {

@@ -14,7 +14,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = [] }
+tauri = { version = "2", features = ["protocol-asset"] }
 tauri-plugin-shell = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
@@ -31,6 +31,7 @@ diesel_migrations = "2.2.0"
 dotenvy = "0.15"
 chrono = "0.4.41"
 directories = "6.0"
+tauri-plugin-fs = "2"
 
 [dependencies.uuid]
 version = "1.17.0"

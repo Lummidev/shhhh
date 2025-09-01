@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, createContext, useEffect } from "react";
 import "./reset.css";
 import "./variables.css";
 import "./App.css";
@@ -10,6 +10,9 @@ import { Home } from "./Pages/Home";
 import { Button } from "./Components/Button/Button";
 import { Search } from "./Pages/Search";
 import { SearchBar } from "./Components/SearchBar/SearchBar";
+import { Profile } from "./Pages/Profile/Profile";
+import { config, updateUserInfo } from "./config";
+import { ProfileEditData } from "./Types/ProfileUpdateData.ts";
 function App() {
   const [currentSearch, setCurrentSearch] = useState("");
   const [pageContext, setPageContext] = useState<PageContext>({
@@ -17,14 +20,14 @@ function App() {
     username: "Username",
     displayName: "Display Name",
   });
-  const setUserInfo = () => {
-    const newDisplayName = prompt("User's Display Name");
-    const newUsername = prompt("User's username");
-    setPageContext({
+
+  const loadUserInfo = async () => {
+    let newContext = {
       ...pageContext,
-      displayName: newDisplayName ?? pageContext.displayName,
-      username: newUsername ?? pageContext.username,
-    });
+      displayName: await config.displayName(),
+      username: await config.username(),
+    };
+    setPageContext(newContext);
   };
   const openPost = (id: string) => {
     setPageContext({ ...pageContext, currentPage: Pages.Post, post_id: id });
@@ -38,7 +41,6 @@ function App() {
     setCurrentSearch("");
   };
   const startSearch = (search: string) => {
-    console.log("started search");
     let searchTrim = search.trim();
 
     if (searchTrim.length > 0) {
@@ -48,6 +50,20 @@ function App() {
       goToHome();
     }
   };
+  const goToProfile = () => {
+    setPageContext({ ...pageContext, currentPage: Pages.Profile });
+  };
+  const onProfileEdit = async (edit: ProfileEditData) => {
+    await updateUserInfo(edit);
+    setPageContext({
+      ...pageContext,
+      displayName: edit.displayName,
+      username: edit.username,
+    });
+  };
+  useEffect(() => {
+    loadUserInfo();
+  }, []);
   const MenuBar = () => {
     return (
       <>
@@ -62,8 +78,8 @@ function App() {
               </Button>
             </li>
             <li>
-              <Button onClick={setUserInfo} buttonType="menu">
-                <Fa icon={faUser} /> User
+              <Button onClick={goToProfile} buttonType="menu">
+                <Fa icon={faUser} /> {pageContext.displayName}
               </Button>
             </li>
           </ul>
@@ -91,6 +107,14 @@ function App() {
             filter={currentSearch}
           />
         );
+      case Pages.Profile:
+        return (
+          <Profile
+            onProfileEdit={onProfileEdit}
+            context={pageContext}
+            openPost={openPost}
+          />
+        );
     }
   };
   const CurrentTab = () => {
@@ -105,6 +129,8 @@ function App() {
             Searching for <i>{currentSearch}</i>
           </h2>
         );
+      case Pages.Profile:
+        return <h2>Profile</h2>;
     }
   };
   return (
